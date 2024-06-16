@@ -1,18 +1,34 @@
--- CREATE DATABASE "first-look"
-
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
-CREATE TABLE "user" (
+CREATE TABLE users (
     "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL,
-    "access_level" INT DEFAULT 0
+    "username" VARCHAR(20) UNIQUE NOT NULL,
+    "password" VARCHAR NOT NULL
 );
 
-CREATE TABLE "pets" (
+CREATE TABLE user_bucket_items (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(80) NOT NULL,
-    "user_id" INT REFERENCES "user"
+    "user_id" INTEGER NOT NULL REFERENCES users(id),
+    "bucket_list_item" VARCHAR(600) NOT NULL,
+    "completion_status" BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE categories (
+    "id" SERIAL PRIMARY KEY,
+    "category_name" VARCHAR(30) UNIQUE NOT NULL
+);
+
+CREATE TABLE category_bucket_list_items (
+    "id" SERIAL PRIMARY KEY,
+    "category_id" INTEGER NOT NULL REFERENCES categories(id),
+    "user_id" INTEGER NOT NULL REFERENCES users(id),
+    "public_bucket_list_item" VARCHAR(400) NOT NULL
+);
+
+INSERT INTO "categories" (category_name)
+VALUES 
+('Adventure/Travel'), 
+('Personal Growth/Learning'), 
+('Cultural/Artistic Experiences'), 
+('Service/Contribution')
+    ;
+    
+DROP TABLE users;
