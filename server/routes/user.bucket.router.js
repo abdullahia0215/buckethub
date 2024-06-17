@@ -34,4 +34,32 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
     });
 });
 
+router.delete("/", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(`DELETE FROM user_bucket_items WHERE id=$1 AND user_id=$2;`, [
+      req.body.user_itemID,
+      req.user.id,
+    ])
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in deleting user item", error);
+    });
+});
+router.put("/", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      "UPDATE user_bucket_items SET completion_status=true WHERE user_id=$1 AND id=$2;",
+      [req.user.id, req.user_itemID]
+    )
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in updating completion", error);
+    });
+});
 module.exports = router;
