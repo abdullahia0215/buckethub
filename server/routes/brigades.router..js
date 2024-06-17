@@ -113,7 +113,7 @@ router.post("/service", rejectUnauthenticated, (req, res) => {
 router.delete("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `DELETE FROM category_bucket_list_items WHERE id=$1 AND user_id=$2`,
+      `DELETE FROM category_bucket_list_items WHERE id=$1 AND user_id=$2;`,
       [req.body.public_itemID, req.user.id]
     )
     .then(() => {
@@ -121,7 +121,21 @@ router.delete("/", rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       res.sendStatus(500);
-      console.log(error);
+      console.log("error in deleting public item", error);
+    });
+});
+router.delete("/", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(`DELETE FROM user_bucket_items WHERE id=$1 AND user_id=$2;`, [
+      req.body.user_itemID,
+      req.user.id,
+    ])
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in deleting user item", error);
     });
 });
 module.exports = router;
