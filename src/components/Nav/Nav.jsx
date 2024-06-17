@@ -32,8 +32,8 @@ function Nav() {
               Info Page
             </Link>
 
-            <Link className="navLink" to="/pets">
-              My Pets
+            <Link className="navLink" to="/myBucket">
+              My Bucket
             </Link>
 
             <LogOutButton className="navLink" />

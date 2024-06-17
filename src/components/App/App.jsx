@@ -19,6 +19,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 
+
+import MyBucket from '../MyBucket/MyBucket';
+
 function App() {
   const dispatch = useDispatch();
 
@@ -59,8 +62,9 @@ function App() {
           <ProtectedRoute
             // logged in shows Pets else shows LoginPage
             exact
-            path="/pets"
+            path="/myBucket"
           >
+            <MyBucket/>
           </ProtectedRoute>
 
           <ProtectedRoute
