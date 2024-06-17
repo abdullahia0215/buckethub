@@ -8,7 +8,6 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -18,9 +17,6 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import UserPage from '../UserPage/UserPage';
-import PetsPage
- from '../UserPage/PetsPage';
 import './App.css';
 
 function App() {
@@ -58,7 +54,6 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -66,7 +61,6 @@ function App() {
             exact
             path="/pets"
           >
-            <PetsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -124,7 +118,6 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
       </div>
     </Router>
   );
