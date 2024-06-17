@@ -5,7 +5,6 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
-// This route *should* return the logged in users pets
 router.get("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(`SELECT * FROM "user_bucket_items" WHERE user_id=$1`, [req.user.id])
@@ -18,7 +17,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// This route *should* add a pet for the logged in user
 router.post("/", rejectUnauthenticated, async (req, res) => {
   pool
     .query(
@@ -51,8 +49,8 @@ router.delete("/", rejectUnauthenticated, (req, res) => {
 router.put("/", rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      "UPDATE user_bucket_items SET completion_status=true WHERE user_id=$1 AND id=$2;",
-      [req.user.id, req.user_itemID]
+      `UPDATE "user_bucket_items" SET completion_status=true WHERE id=$1 AND user_id=$2;`,
+      [req.body.user_itemID, req.user.id]
     )
     .then(() => {
       res.sendStatus(201);

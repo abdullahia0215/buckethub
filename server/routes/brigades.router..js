@@ -124,18 +124,5 @@ router.delete("/", rejectUnauthenticated, (req, res) => {
       console.log("error in deleting public item", error);
     });
 });
-router.delete("/", rejectUnauthenticated, (req, res) => {
-  pool
-    .query(`DELETE FROM user_bucket_items WHERE id=$1 AND user_id=$2;`, [
-      req.body.user_itemID,
-      req.user.id,
-    ])
-    .then(() => {
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      res.sendStatus(500);
-      console.log("error in deleting user item", error);
-    });
-});
+
 module.exports = router;
