@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 export default function AdventureBrigade() {
+  let [input, setInput] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
   const adventureBrigade = useSelector(
@@ -22,12 +23,29 @@ export default function AdventureBrigade() {
     });
   };
 
+  const addItem = () => {
+    dispatch({
+      type: "ADD_ADVENTURE_ITEM",
+      payload: input,
+    });
+    setInput("");
+  };
+
+  const handleBucketInput = (event) => {
+    setInput(event.target.value);
+    console.log(input);
+  };
+
   return (
     <>
       <h1>Adventure</h1>
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
+      <form onSubmit={addItem}>
+        <input value={input} onChange={handleBucketInput}></input>
+        <button>Submit Suggestion</button>
+      </form>
       <table>
         <tbody>
           <tr>
