@@ -28,7 +28,13 @@ export default function ServiceBrigade() {
           {serviceBrigade.map((serviceItem) => (
             <tr key={serviceItem.id}>
               <td>{serviceItem.public_bucket_list_item}</td>
-              {user.id === serviceItem.user_id ? <button>Delete</button> : ""}
+              {user.id === serviceItem.user_id ? (
+                <td>
+                  <button>Delete</button>
+                </td>
+              ) : (
+                ""
+              )}
             </tr>
           ))}
         </tbody>

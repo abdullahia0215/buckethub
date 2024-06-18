@@ -28,7 +28,13 @@ export default function CulturalBrigade() {
           {cultureBrigade.map((cultureItem) => (
             <tr key={cultureItem.id}>
               <td>{cultureItem.public_bucket_list_item}</td>
-              {user.id === cultureItem.user_id ? <button>Delete</button> : ""}
+              {user.id === cultureItem.user_id ? (
+                <td>
+                  <button>Delete</button>
+                </td>
+              ) : (
+                ""
+              )}
             </tr>
           ))}
         </tbody>

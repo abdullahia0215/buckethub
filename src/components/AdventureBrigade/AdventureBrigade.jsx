@@ -29,7 +29,13 @@ export default function AdventureBrigade() {
           {adventureBrigade.map((adventureItem) => (
             <tr key={adventureItem.id}>
               <td>{adventureItem.public_bucket_list_item}</td>
-              {user.id === adventureItem.user_id ? <button>Delete</button> : ""}
+              {user.id === adventureItem.user_id ? (
+                <td>
+                  <button>Delete</button>
+                </td>
+              ) : (
+                ""
+              )}
             </tr>
           ))}
         </tbody>
