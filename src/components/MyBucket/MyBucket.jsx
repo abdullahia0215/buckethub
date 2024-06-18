@@ -30,9 +30,15 @@ export default function MyBucket() {
       return;
     }
   };
+
+  const addItem = () => {
+
+  }
   return (
     <>
       <h1>My Bucket</h1>
+      <input></input>
+      <button>Add To Bucket List</button>
       <table>
         <tbody>
           <tr>
