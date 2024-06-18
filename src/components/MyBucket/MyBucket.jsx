@@ -33,11 +33,13 @@ export default function MyBucket() {
     }
   };
 
-  const addItem = () => {
+  const addItem = (event) => {
+    event.preventDefault();
     dispatch({
       type: "ADD_USER_BUCKET_ITEM",
       payload: input,
     });
+    setInput('');
   };
 
   const handleBucketInput = (event) => {
