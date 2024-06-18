@@ -4,6 +4,9 @@ import registrationSaga from "./registration.saga";
 import userSaga from "./user.saga";
 import fetchMyBucketSaga from "./my.bucket.saga";
 import adventureSaga from "./adventure.brigade.saga";
+import serviceSaga from "./service.brigade.saga";
+import growthSaga from "./growth.brigade.saga";
+import cultureSaga from "./culture.brigade.saga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,5 +22,8 @@ export default function* rootSaga() {
     userSaga(),
     fetchMyBucketSaga(),
     adventureSaga(),
+    serviceSaga(),
+    growthSaga(),
+    cultureSaga(),
   ]);
 }
