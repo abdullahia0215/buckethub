@@ -18,8 +18,18 @@ function* completeBucketItem(action) {
   }
 }
 
+function* deleteBucketIten(action) {
+  try {
+    yield axios.delete(`/api/userbucket/${action.payload}`)
+    yield put ({ type: "FETCH_MY_BUCKET"})
+  } catch (error) {
+    console.log('error in deleting saga', error)
+  }
+}
+
 function* fetchMyBucketSaga() {
   yield takeEvery("FETCH_MY_BUCKET", fetchMyBucket);
   yield takeEvery("COMPLETE_BUCKET_ITEM", completeBucketItem)
+  yield takeEvery("DELETE_BUCKET_ITEM", deleteBucketIten)
 }
 export default fetchMyBucketSaga;

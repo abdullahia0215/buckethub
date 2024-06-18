@@ -32,10 +32,10 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
     });
 });
 
-router.delete("/", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   pool
     .query(`DELETE FROM user_bucket_items WHERE id=$1 AND user_id=$2;`, [
-      req.body.user_itemID,
+      req.params.id,
       req.user.id,
     ])
     .then(() => {

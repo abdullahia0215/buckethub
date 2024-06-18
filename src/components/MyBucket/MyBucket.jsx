@@ -22,7 +22,14 @@ export default function MyBucket() {
       return;
     }
   };
-
+  const deleteItem = (itemID) => {
+    if (confirm("Are you sure you'd like to delete this item?") === true) {
+      console.log("item delete");
+      dispatch({ type: "DELETE_BUCKET_ITEM", payload: itemID });
+    } else {
+      return;
+    }
+  };
   return (
     <>
       <h1>My Bucket</h1>
@@ -41,7 +48,7 @@ export default function MyBucket() {
               </td>
 
               <td>
-                <button>Delete</button>
+                <button onClick={() => deleteItem(userItem.id)}>Delete</button>
               </td>
             </tr>
           ))}
