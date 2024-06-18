@@ -29,7 +29,10 @@ function* deleteBucketIten(action) {
 
 function* addUserBucketItem(action) {
   try {
-    yield axios.post(`/api/userbucket/`, { item: blungo });
+    yield axios.post(`/api/userbucket/`, {
+      user_item: action.payload,
+    });
+    yield put({ type: "FETCH_MY_BUCKET" });
   } catch (error) {
     console.log("error in adduserbucketitem saga", error);
   }
@@ -37,7 +40,8 @@ function* addUserBucketItem(action) {
 
 function* fetchMyBucketSaga() {
   yield takeEvery("FETCH_MY_BUCKET", fetchMyBucket);
-  yield takeEvery("COMPLETE_BUCKET_ITEM", completeBucketItem);
-  yield takeEvery("DELETE_BUCKET_ITEM", deleteBucketIten);
+  yield takeEvery("COMPLETE_USER_BUCKET_ITEM", completeBucketItem);
+  yield takeEvery("DELETE_USER_BUCKET_ITEM", deleteBucketIten);
+  yield takeEvery("ADD_USER_BUCKET_ITEM", addUserBucketItem);
 }
 export default fetchMyBucketSaga;

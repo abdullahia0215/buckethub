@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function MyBucket() {
   const userBucket = useSelector((store) => store.myBucketReducer);
+
+  let [input, setInput] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export default function MyBucket() {
     ) {
       console.log("item completed");
       alert("congrats! you ticked another off the list :D");
-      dispatch({ type: "COMPLETE_BUCKET_ITEM", payload: itemID });
+      dispatch({ type: "COMPLETE_USER_BUCKET_ITEM", payload: itemID });
     } else {
       return;
     }
@@ -25,20 +27,28 @@ export default function MyBucket() {
   const deleteItem = (itemID) => {
     if (confirm("Are you sure you'd like to delete this item?") === true) {
       console.log("item delete");
-      dispatch({ type: "DELETE_BUCKET_ITEM", payload: itemID });
+      dispatch({ type: "DELETE_USER_BUCKET_ITEM", payload: itemID });
     } else {
       return;
     }
   };
 
   const addItem = () => {
+    dispatch({
+      type: "ADD_USER_BUCKET_ITEM",
+      payload: input,
+    });
+  };
 
-  }
+  const handleBucketInput = (event) => {
+    setInput(event.target.value);
+    console.log(input);
+  };
   return (
     <>
       <h1>My Bucket</h1>
-      <input></input>
-      <button>Add To Bucket List</button>
+      <input value={input} onChange={handleBucketInput}></input>
+      <button onClick={addItem}>Add To Bucket List</button>
       <table>
         <tbody>
           <tr>
