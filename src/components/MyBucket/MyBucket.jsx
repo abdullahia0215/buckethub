@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function MyBucket() {
   const userBucket = useSelector((store) => store.myBucketReducer);
 
-  let [input, setInput] = useState([]);
+  let [input, setInput] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,8 +47,15 @@ export default function MyBucket() {
   return (
     <>
       <h1>My Bucket</h1>
-      <input value={input} onChange={handleBucketInput}></input>
-      <button onClick={addItem}>Add To Bucket List</button>
+      <form onSubmit={addItem}>
+        <input
+          value={input}
+          onChange={handleBucketInput}
+          placeholder="What's next?"
+          required
+        ></input>
+        <button>Add To Bucket List</button>
+      </form>
       <table>
         <tbody>
           <tr>
