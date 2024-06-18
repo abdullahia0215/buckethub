@@ -14,6 +14,14 @@ export default function AdventureBrigade() {
     });
   }, []);
 
+  const deleteItem = (itemID) => {
+    console.log("click");
+    dispatch({
+      type: "DELETE_ADVENTURE_ITEM",
+      payload: itemID,
+    });
+  };
+
   return (
     <>
       <h1>Adventure</h1>
@@ -31,7 +39,9 @@ export default function AdventureBrigade() {
               <td>{adventureItem.public_bucket_list_item}</td>
               {user.id === adventureItem.user_id ? (
                 <td>
-                  <button>Delete</button>
+                  <button onClick={() => deleteItem(adventureItem.id)}>
+                    Delete
+                  </button>
                 </td>
               ) : (
                 ""

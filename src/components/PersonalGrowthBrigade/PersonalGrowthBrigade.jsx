@@ -13,6 +13,7 @@ export default function PersonalGrowthBrigade() {
       type: "FETCH_GROWTH",
     });
   }, []);
+
   return (
     <>
       <h1>PersonalGrowth</h1>

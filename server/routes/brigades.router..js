@@ -110,11 +110,11 @@ router.post("/service", rejectUnauthenticated, (req, res) => {
     });
 });
 // --------------------------- DELETE REQUESTS FOR THE BRIGADE PAGES ----------------------------
-router.delete("/", rejectUnauthenticated, (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   pool
     .query(
       `DELETE FROM category_bucket_list_items WHERE id=$1 AND user_id=$2;`,
-      [req.body.public_itemID, req.user.id]
+      [req.params.id, req.user.id]
     )
     .then(() => {
       res.sendStatus(201);

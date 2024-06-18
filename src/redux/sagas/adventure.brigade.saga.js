@@ -9,8 +9,16 @@ function* fetchAdventureBrigade() {
     console.log("error in fetching adventure saga", error);
   }
 }
-
-function* adventureSaga () {
-    yield takeEvery('FETCH_ADVENTURE', fetchAdventureBrigade)
+function* deleteAdventureItem(action) {
+  try {
+    yield axios.delete(`/api/brigades/${action.payload}`);
+    yield put({ type: "FETCH_ADVENTURE" });
+  } catch (error) {
+    console.log("error in deleting adventure item saga", error);
+  }
+}
+function* adventureSaga() {
+  yield takeEvery("FETCH_ADVENTURE", fetchAdventureBrigade);
+  yield takeEvery("DELETE_ADVENTURE_ITEM", deleteAdventureItem);
 }
 export default adventureSaga;
