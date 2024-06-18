@@ -25,6 +25,7 @@ import AdventureBrigade from "../AdventureBrigade/AdventureBrigade";
 import CulturalBrigade from "../CulturalBrigade/CulturalBrigade";
 import ServiceBrigade from "../ServiceBrigade/ServiceBrigade";
 import PersonalGrowthBrigade from "../PersonalGrowthBrigade/PersonalGrowthBrigade";
+import BrigadesPage from "../BrigadesPage/BrigadesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
-  }, [dispatch]);
+  }, []);
 
   return (
     <Router>
@@ -100,6 +101,9 @@ function App() {
 
             <ServiceBrigade/>
 
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/brigades">
+            <BrigadesPage/>
           </ProtectedRoute>
           <Route exact path="/login">
             {user.id ? (

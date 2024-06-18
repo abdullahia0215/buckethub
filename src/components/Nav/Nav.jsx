@@ -36,6 +36,10 @@ function Nav() {
               My Bucket
             </Link>
 
+            <Link className="navLink" to="/brigades">
+              Brigades
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}
