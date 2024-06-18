@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 export default function AdventureBrigade() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const adventureBrigade = useSelector(
+    (store) => store.brigadeReducers.adventureReducer
+  );
+  const user = useSelector((store) => store.user);
   useEffect(() => {
     dispatch({
       type: "FETCH_ADVENTURE",
@@ -16,6 +20,20 @@ export default function AdventureBrigade() {
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
+      <table>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Add To Your Bucket list</th>
+          </tr>
+          {adventureBrigade.map((adventureItem) => (
+            <tr key={adventureItem.id}>
+              <td>{adventureItem.public_bucket_list_item}</td>
+              {user.id === adventureItem.user_id ? <button>Delete</button> : ""}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
