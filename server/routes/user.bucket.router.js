@@ -46,11 +46,11 @@ router.delete("/", rejectUnauthenticated, (req, res) => {
       console.log("error in deleting user item", error);
     });
 });
-router.put("/", rejectUnauthenticated, (req, res) => {
+router.put("/:id", rejectUnauthenticated, (req, res) => {
   pool
     .query(
       `UPDATE "user_bucket_items" SET completion_status=true WHERE id=$1 AND user_id=$2;`,
-      [req.body.user_itemID, req.user.id]
+      [req.params.id, req.user.id]
     )
     .then(() => {
       res.sendStatus(201);

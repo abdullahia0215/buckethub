@@ -9,7 +9,17 @@ function* fetchMyBucket() {
   }
 }
 
+function* completeBucketItem(action) {
+  try {
+    yield axios.put(`/api/userbucket/${action.payload}`);
+    yield put({ type: "FETCH_MY_BUCKET" });
+  } catch (error) {
+    console.log("error in completing item", error);
+  }
+}
+
 function* fetchMyBucketSaga() {
   yield takeEvery("FETCH_MY_BUCKET", fetchMyBucket);
+  yield takeEvery("COMPLETE_BUCKET_ITEM", completeBucketItem)
 }
 export default fetchMyBucketSaga;

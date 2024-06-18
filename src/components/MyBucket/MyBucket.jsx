@@ -9,10 +9,15 @@ export default function MyBucket() {
     dispatch({ type: "FETCH_MY_BUCKET" });
   }, []);
 
-  const completeItem = () => {
-    if (confirm("Are you sure you want to mark this complete? You will not be able to change it's status back to incomplete.") === true) {
+  const completeItem = (itemID) => {
+    if (
+      confirm(
+        "Are you sure you want to mark this complete? You will not be able to change it's status back to incomplete."
+      ) === true
+    ) {
       console.log("item completed");
-      alert("congrats! you ticked another off the list :D")
+      alert("congrats! you ticked another off the list :D");
+      dispatch({ type: "COMPLETE_BUCKET_ITEM", payload: itemID });
     } else {
       return;
     }
@@ -30,7 +35,9 @@ export default function MyBucket() {
             <tr key={userItem.id}>
               <td>{userItem.bucket_list_item}</td>
               <td>
-                <button onClick={() => completeItem()}>Complete</button>
+                <button onClick={() => completeItem(userItem.id)}>
+                  Complete
+                </button>
               </td>
 
               <td>
