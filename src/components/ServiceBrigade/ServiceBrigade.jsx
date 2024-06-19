@@ -65,7 +65,9 @@ export default function ServiceBrigade() {
               <td>{serviceItem.public_bucket_list_item}</td>
               <td>
                 {user.id === serviceItem.user_id ? (
-                  <button onClick={() => deleteItem(serviceItem.id)}>Delete</button>
+                  <button onClick={() => deleteItem(serviceItem.id)}>
+                    Delete
+                  </button>
                 ) : (
                   ""
                 )}
@@ -79,6 +81,7 @@ export default function ServiceBrigade() {
                   Add To Bucket List
                 </button>
               </td>
+              <td>{serviceItem.total_votes}</td>
             </tr>
           ))}
         </tbody>

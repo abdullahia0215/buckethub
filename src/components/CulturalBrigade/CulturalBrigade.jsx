@@ -76,6 +76,9 @@ export default function CulturalBrigade() {
               <td>
               <button onClick={() => addToMyBucket(cultureItem.public_bucket_list_item)}>Add To Bucket List</button>
               </td>
+              <td>
+                {cultureItem.total_votes}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -83,6 +83,9 @@ export default function PersonalGrowthBrigade() {
                   Add To Bucket List
                 </button>
               </td>
+              <td>
+                {growthItem.total_votes}
+              </td>
             </tr>
           ))}
         </tbody>

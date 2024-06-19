@@ -81,6 +81,7 @@ export default function AdventureBrigade() {
                   Add To Bucket List
                 </button>
               </td>
+              <td>{adventureItem.total_votes}</td>
             </tr>
           ))}
         </tbody>

@@ -17,7 +17,8 @@ router.get("/adventure", rejectUnauthenticated, (req, res) => {
     FROM category_bucket_list_items
     LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
     WHERE category_bucket_list_items.category_id = 1  
-    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item
+    ORDER BY total_votes DESC;
     `
     )
     .then((result) => {
@@ -40,7 +41,8 @@ router.get("/growth", rejectUnauthenticated, async (req, res) => {
     FROM category_bucket_list_items
     LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
     WHERE category_bucket_list_items.category_id = 2  
-    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item
+    ORDER BY total_votes DESC;
     `
     )
     .then((result) => {
@@ -62,7 +64,8 @@ router.get("/culture", rejectUnauthenticated, async (req, res) => {
     FROM category_bucket_list_items
     LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
     WHERE category_bucket_list_items.category_id = 3  
-    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item
+    ORDER BY total_votes DESC;
     `
     )
     .then((result) => {
@@ -84,7 +87,8 @@ router.get("/service", rejectUnauthenticated, async (req, res) => {
     FROM category_bucket_list_items
     LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
     WHERE category_bucket_list_items.category_id = 4  
-    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item
+    ORDER BY total_votes DESC;
     `
     )
     .then((result) => {
