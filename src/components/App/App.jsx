@@ -61,7 +61,9 @@ function App() {
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
-          ></ProtectedRoute>
+          >
+            <Redirect to="/myBucket" />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows Pets else shows LoginPage
@@ -80,30 +82,22 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/adventure">
-
             <AdventureBrigade />
-
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/culture">
-
             <CulturalBrigade />
-
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/growth">
-
-            <PersonalGrowthBrigade/>
-
+            <PersonalGrowthBrigade />
           </ProtectedRoute>
-          
+
           <ProtectedRoute exact path="/service">
-
-            <ServiceBrigade/>
-
+            <ServiceBrigade />
           </ProtectedRoute>
           <ProtectedRoute exact path="/brigades">
-            <BrigadesPage/>
+            <BrigadesPage />
           </ProtectedRoute>
           <Route exact path="/login">
             {user.id ? (
