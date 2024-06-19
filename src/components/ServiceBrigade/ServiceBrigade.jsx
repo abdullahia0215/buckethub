@@ -8,6 +8,8 @@ export default function ServiceBrigade() {
   const serviceBrigade = useSelector(
     (store) => store.brigadeReducers.serviceReducer
   );
+
+  const userVotes = useSelector((store) => store.userVoteReducer);
   const user = useSelector((store) => store.user);
   useEffect(() => {
     dispatch({
@@ -97,6 +99,13 @@ export default function ServiceBrigade() {
                 </button>
               </td>
               <td>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === serviceItem.id) {
+                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                  } else {
+                    return null;
+                  }
+                })}
                 <button onClick={() => upvoteItem(serviceItem.id)}>⬆️</button>
                 {serviceItem.total_votes}
                 <button onClick={() => downvoteItem(serviceItem.id)}>⬇️</button>

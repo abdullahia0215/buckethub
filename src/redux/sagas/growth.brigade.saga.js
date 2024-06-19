@@ -5,6 +5,7 @@ function* fetchGrowthBrigade() {
   try {
     const response = yield axios.get("/api/brigades/growth");
     yield put({ type: "SET_GROWTH", payload: response.data });
+    yield put({ type: 'FETCH_MY_VOTES'})
   } catch (error) {
     console.log("error in fetching Growth saga", error);
   }

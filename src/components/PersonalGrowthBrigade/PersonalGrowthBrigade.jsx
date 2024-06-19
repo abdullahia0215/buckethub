@@ -7,6 +7,7 @@ export default function PersonalGrowthBrigade() {
   const growthBrigade = useSelector(
     (store) => store.brigadeReducers.growthReducer
   );
+  const userVotes = useSelector((store) => store.userVoteReducer);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -98,6 +99,13 @@ export default function PersonalGrowthBrigade() {
                 </button>
               </td>
               <td>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === growthItem.id) {
+                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                  } else {
+                    return null;
+                  }
+                })}
                 <button onClick={() => upvoteItem(growthItem.id)}>⬆️</button>
                 {growthItem.total_votes}
                 <button onClick={() => downvoteItem(growthItem.id)}>⬇️</button>

@@ -5,6 +5,7 @@ function* fetchServiceBrigade() {
   try {
     const response = yield axios.get("/api/brigades/service");
     yield put({ type: "SET_SERVICE", payload: response.data });
+    yield put({ type: 'FETCH_MY_VOTES'})
   } catch (error) {
     console.log("error in fetching Service saga", error);
   }

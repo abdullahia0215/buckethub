@@ -9,6 +9,8 @@ export default function CulturalBrigade() {
     (store) => store.brigadeReducers.cultureReducer
   );
   const user = useSelector((store) => store.user);
+  const userVotes = useSelector((store) => store.userVoteReducer)
+
   useEffect(() => {
     dispatch({
       type: "FETCH_CULTURE",
@@ -97,6 +99,13 @@ export default function CulturalBrigade() {
                 </button>
               </td>
               <td>
+              {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === cultureItem.id) {
+                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                  } else {
+                    return null;
+                  }
+                })}
                 <button onClick={() => upvoteItem(cultureItem.id)}>⬆️</button>
                 {cultureItem.total_votes}
                 <button onClick={() => downvoteItem(cultureItem.id)}>⬇️</button>
