@@ -99,16 +99,45 @@ export default function ServiceBrigade() {
                 </button>
               </td>
               <td>
+                {/* <button onClick={() => upvoteItem(serviceItem.id)}>⬆️</button> */}
                 {userVotes.map((votedItem) => {
                   if (votedItem.bucket_list_item_id === serviceItem.id) {
-                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                    return votedItem.upvote ? (
+                      <button
+                        onClick={() => upvoteItem(serviceItem.id)}
+                        style={{ backgroundColor: "orange" }}
+                      >
+                        ⬆️
+                      </button>
+                    ) : (
+                      <button onClick={() => upvoteItem(serviceItem.id)}>
+                        ⬆️
+                      </button>
+                    );
                   } else {
                     return null;
                   }
                 })}
-                <button onClick={() => upvoteItem(serviceItem.id)}>⬆️</button>
                 {serviceItem.total_votes}
-                <button onClick={() => downvoteItem(serviceItem.id)}>⬇️</button>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === serviceItem.id) {
+                    return votedItem.downvote ? (
+                      <button
+                        onClick={() => downvoteItem(serviceItem.id)}
+                        style={{ backgroundColor: "blue" }}
+                      >
+                        ⬇️
+                      </button>
+                    ) : (
+                      <button onClick={() => downvoteItem(serviceItem.id)}>
+                        ⬇️
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+                {/* <button onClick={() => downvoteItem(serviceItem.id)}>⬇️</button> */}
               </td>
             </tr>
           ))}

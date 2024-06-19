@@ -15,7 +15,6 @@ export default function AdventureBrigade() {
     dispatch({
       type: "FETCH_ADVENTURE",
     });
-
   }, []);
 
   const upvoteItem = (itemID) => {
@@ -102,16 +101,41 @@ export default function AdventureBrigade() {
               <td>
                 {userVotes.map((votedItem) => {
                   if (votedItem.bucket_list_item_id === adventureItem.id) {
-                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                    return votedItem.upvote ? (
+                      <button
+                        onClick={() => upvoteItem(adventureItem.id)}
+                        style={{ backgroundColor: "orange" }}
+                      >
+                        ⬆️
+                      </button>
+                    ) : (
+                      <button onClick={() => upvoteItem(adventureItem.id)}>
+                        ⬆️
+                      </button>
+                    );
                   } else {
                     return null;
                   }
                 })}
-                <button onClick={() => upvoteItem(adventureItem.id)}>⬆️</button>
                 {adventureItem.total_votes}
-                <button onClick={() => downvoteItem(adventureItem.id)}>
-                  ⬇️
-                </button>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === adventureItem.id) {
+                    return votedItem.downvote ? (
+                      <button
+                        onClick={() => downvoteItem(adventureItem.id)}
+                        style={{ backgroundColor: "blue" }}
+                      >
+                        ⬇️
+                      </button>
+                    ) : (
+                      <button onClick={() => downvoteItem(adventureItem.id)}>
+                        ⬇️
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
               </td>
             </tr>
           ))}

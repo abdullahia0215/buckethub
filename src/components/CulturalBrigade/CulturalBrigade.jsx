@@ -9,7 +9,7 @@ export default function CulturalBrigade() {
     (store) => store.brigadeReducers.cultureReducer
   );
   const user = useSelector((store) => store.user);
-  const userVotes = useSelector((store) => store.userVoteReducer)
+  const userVotes = useSelector((store) => store.userVoteReducer);
 
   useEffect(() => {
     dispatch({
@@ -99,16 +99,40 @@ export default function CulturalBrigade() {
                 </button>
               </td>
               <td>
-              {userVotes.map((votedItem) => {
-                  if (votedItem.bucket_list_item_id === cultureItem.id) {
-                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
-                  } else {
-                    return null;
-                  }
-                })}
-                <button onClick={() => upvoteItem(cultureItem.id)}>⬆️</button>
+                {/* Upvote button */}
+                <button
+                  onClick={() => upvoteItem(cultureItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === cultureItem.id &&
+                        votedItem.upvote
+                    )
+                      ? "orange"
+                      : "inherit",
+                  }}
+                >
+                  ⬆️
+                </button>
+
+                {/* Vote count */}
                 {cultureItem.total_votes}
-                <button onClick={() => downvoteItem(cultureItem.id)}>⬇️</button>
+
+                {/* Downvote button */}
+                <button
+                  onClick={() => downvoteItem(cultureItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === cultureItem.id &&
+                        votedItem.downvote
+                    )
+                      ? "blue"
+                      : "inherit",
+                  }}
+                >
+                  ⬇️
+                </button>
               </td>
             </tr>
           ))}

@@ -99,16 +99,43 @@ export default function PersonalGrowthBrigade() {
                 </button>
               </td>
               <td>
-                {userVotes.map((votedItem) => {
+              {userVotes.map((votedItem) => {
                   if (votedItem.bucket_list_item_id === growthItem.id) {
-                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                    return votedItem.upvote ? (
+                      <button
+                        onClick={() => upvoteItem(growthItem.id)}
+                        style={{ backgroundColor: "orange" }}
+                      >
+                        ⬆️
+                      </button>
+                    ) : (
+                      <button onClick={() => upvoteItem(growthItem.id)}>
+                        ⬆️
+                      </button>
+                    );
                   } else {
                     return null;
                   }
                 })}
-                <button onClick={() => upvoteItem(growthItem.id)}>⬆️</button>
                 {growthItem.total_votes}
-                <button onClick={() => downvoteItem(growthItem.id)}>⬇️</button>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === growthItem.id) {
+                    return votedItem.downvote ? (
+                      <button
+                        onClick={() => downvoteItem(growthItem.id)}
+                        style={{ backgroundColor: "blue" }}
+                      >
+                        ⬇️
+                      </button>
+                    ) : (
+                      <button onClick={() => downvoteItem(growthItem.id)}>
+                        ⬇️
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
               </td>
             </tr>
           ))}
