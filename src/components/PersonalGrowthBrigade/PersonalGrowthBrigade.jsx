@@ -15,6 +15,20 @@ export default function PersonalGrowthBrigade() {
     });
   }, []);
 
+  const upvoteItem = (itemID) => {
+    console.log("upvoted", itemID);
+    dispatch({
+      type: "UPVOTE_GROWTH",
+      payload: itemID,
+    });
+  };
+
+  const downvoteItem = (itemID) => {
+    dispatch({
+      type: "DOWNVOTE_GROWTH",
+      payload: itemID,
+    });
+  };
   const deleteItem = (itemID) => {
     console.log("click");
     dispatch({
@@ -75,7 +89,7 @@ export default function PersonalGrowthBrigade() {
                 )}
               </td>
               <td>
-              <button
+                <button
                   onClick={() =>
                     addToMyBucket(growthItem.public_bucket_list_item)
                   }
@@ -84,7 +98,9 @@ export default function PersonalGrowthBrigade() {
                 </button>
               </td>
               <td>
+                <button onClick={() => upvoteItem(growthItem.id)}>⬆️</button>
                 {growthItem.total_votes}
+                <button onClick={() => downvoteItem(growthItem.id)}>⬇️</button>
               </td>
             </tr>
           ))}
