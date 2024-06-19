@@ -1,7 +1,8 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 export default function CulturalBrigade() {
+  let [input, setInput] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
   const cultureBrigade = useSelector(
@@ -13,12 +14,20 @@ export default function CulturalBrigade() {
       type: "FETCH_CULTURE",
     });
   }, []);
+  const handleBucketInput = (event) => {
+    setInput(event.target.value);
+    console.log(input);
+  };
   return (
     <>
       <h1>Cultural</h1>
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
+      <form>
+        <input onChange={handleBucketInput}></input>
+        <button>Submit Suggestion</button>
+      </form>
       <table>
         <tbody>
           <tr>

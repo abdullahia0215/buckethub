@@ -39,6 +39,6 @@ function* adventureSaga() {
   yield takeEvery("FETCH_ADVENTURE", fetchAdventureBrigade);
   yield takeEvery("DELETE_ADVENTURE_ITEM", deleteAdventureItem);
   yield takeEvery("ADD_ADVENTURE_ITEM", addAdventureItem);
-  yield takeEvery("ADD_TO_USER_BUCKET", addToMyBucket);
+  yield takeEvery("ADD_ADVENTURE_USER_BUCKET", addToMyBucket);
 }
 export default adventureSaga;

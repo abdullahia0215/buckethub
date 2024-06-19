@@ -1,7 +1,8 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 export default function ServiceBrigade() {
+  let [input, setInput] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
   const serviceBrigade = useSelector(
@@ -13,12 +14,20 @@ export default function ServiceBrigade() {
       type: "FETCH_SERVICE",
     });
   }, []);
+  const handleBucketInput = (event) => {
+    setInput(event.target.value);
+    console.log(input);
+  };
   return (
     <>
       <h1>Service</h1>
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
+      <form>
+        <input onChange={handleBucketInput}></input>
+        <button>Submit Suggestion</button>
+      </form>
       <table>
         <tbody>
           <tr>

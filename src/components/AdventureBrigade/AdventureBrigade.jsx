@@ -34,7 +34,7 @@ export default function AdventureBrigade() {
   const addToMyBucket = (event) => {
     const itemForBucketList = (event.target.closest('tr').getAttribute('data-value'))
     dispatch({
-      type: 'ADD_TO_USER_BUCKET',
+      type: 'ADD_ADVENTURE_USER_BUCKET',
       payload: itemForBucketList
     })
   }
@@ -51,7 +51,7 @@ export default function AdventureBrigade() {
         Back To Brigades
       </button>
       <form onSubmit={addItem}>
-        <input value={input} onChange={handleBucketInput}></input>
+        <input value={input} onChange={handleBucketInput} required></input>
         <button>Submit Suggestion</button>
       </form>
       <table>
