@@ -31,6 +31,14 @@ export default function AdventureBrigade() {
     setInput("");
   };
 
+  const addToMyBucket = (event) => {
+    const itemForBucketList = (event.target.closest('tr').getAttribute('data-value'))
+    dispatch({
+      type: 'ADD_TO_USER_BUCKET',
+      payload: itemForBucketList
+    })
+  }
+
   const handleBucketInput = (event) => {
     setInput(event.target.value);
     console.log(input);
@@ -50,20 +58,24 @@ export default function AdventureBrigade() {
         <tbody>
           <tr>
             <th>Name</th>
-            <th>Add To Your Bucket list</th>
+            <th>Delete</th>
+            <th>Add To Your Bucket List</th>
           </tr>
           {adventureBrigade.map((adventureItem) => (
-            <tr key={adventureItem.id}>
+            <tr key={adventureItem.id} data-value={adventureItem.public_bucket_list_item}>
               <td>{adventureItem.public_bucket_list_item}</td>
-              {user.id === adventureItem.user_id ? (
-                <td>
+              <td>
+                {user.id === adventureItem.user_id ? (
                   <button onClick={() => deleteItem(adventureItem.id)}>
                     Delete
                   </button>
-                </td>
-              ) : (
-                ""
-              )}
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                <button onClick={addToMyBucket}>Add To Bucket List</button>
+              </td>
             </tr>
           ))}
         </tbody>

@@ -28,9 +28,17 @@ function* addAdventureItem(action) {
     console.log("error in adding adventure item", error);
   }
 }
+function* addToMyBucket(action) {
+  try {
+    yield axios.post("/api/userbucket/", { user_item: action.payload });
+  } catch (error) {
+    console.log("error in adding to users bucket list", error);
+  }
+}
 function* adventureSaga() {
   yield takeEvery("FETCH_ADVENTURE", fetchAdventureBrigade);
   yield takeEvery("DELETE_ADVENTURE_ITEM", deleteAdventureItem);
   yield takeEvery("ADD_ADVENTURE_ITEM", addAdventureItem);
+  yield takeEvery("ADD_TO_USER_BUCKET", addToMyBucket);
 }
 export default adventureSaga;
