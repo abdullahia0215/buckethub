@@ -1,66 +1,74 @@
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-function* adventureUpvoteSaga() {
+function* adventureUpvoteSaga(action) {
   try {
-    yield axios.post("/brigades/upvote", { public_itemID: action.payload });
+    yield axios.post("/api/brigades/upvote", { public_itemID: action.payload });
     yield put({ type: "FETCH_ADVENTURE" });
   } catch (error) {
     console.log("error in upvoting adventure item", error);
   }
 }
-function* cultureUpvoteSaga() {
+function* cultureUpvoteSaga(action) {
   try {
-    yield axios.post("/brigades/upvote", { public_itemID: action.payload });
+    yield axios.post("/api/brigades/upvote", { public_itemID: action.payload });
     yield put({ type: "FETCH_CULTURE" });
   } catch (error) {
     console.log("error in upvoting culture item", error);
   }
 }
-function* serviceUpvoteSaga() {
+function* serviceUpvoteSaga(action) {
   try {
-    yield axios.post("/brigades/upvote", { public_itemID: action.payload });
+    yield axios.post("/api/brigades/upvote", { public_itemID: action.payload });
     yield put({ type: "FETCH_SERVICE" });
   } catch (error) {
     console.log("error in upvoting service item", error);
   }
 }
-function* growthUpvoteSaga() {
+function* growthUpvoteSaga(action) {
   try {
-    yield axios.post("/brigades/upvote", { public_itemID: action.payload });
+    yield axios.post("/api/brigades/upvote", { public_itemID: action.payload });
     yield put({ type: "FETCH_GROWTH" });
   } catch (error) {
     console.log("error in upvoting growth item", error);
   }
 }
 
-function* adventureDownvoteSaga() {
+function* adventureDownvoteSaga(action) {
   try {
-    yield axios.post("/brigades/downvote", { public_itemID: aciton.payload });
+    yield axios.post("/api/brigades/downvote", {
+      public_itemID: action.payload,
+    });
     yield put({ type: "FETCH_ADVENTURE" });
   } catch (error) {
     console.log("error downvoting adventure item", error);
   }
 }
-function* cultureDownvoteSaga() {
+function* cultureDownvoteSaga(action) {
   try {
-    yield axios.post("/brigades/downvote", { public_itemID: aciton.payload });
+    yield axios.post("/api/brigades/downvote", {
+      public_itemID: action.payload,
+    });
     yield put({ type: "FETCH_CULTURE" });
   } catch (error) {
     console.log("error downvoting culture item", error);
   }
 }
-function* growthDownvoteSaga() {
+function* growthDownvoteSaga(action) {
   try {
-    yield axios.post("/brigades/downvote", { public_itemID: aciton.payload });
+    yield axios.post("/api/brigades/downvote", {
+      public_itemID: action.payload,
+    });
     yield put({ type: "FETCH_GROWTH" });
   } catch (error) {
     console.log("error downvoting growth item", error);
   }
 }
-function* serviceDownvoteSaga() {
+function* serviceDownvoteSaga(action) {
   try {
-    yield axios.post("/brigades/downvote", { public_itemID: aciton.payload });
+    yield axios.post("/api/brigades/downvote", {
+      public_itemID: action.payload,
+    });
     yield put({ type: "FETCH_SERVICE" });
   } catch (error) {
     console.log("error downvoting service item", error);

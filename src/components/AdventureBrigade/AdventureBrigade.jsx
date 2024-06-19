@@ -15,6 +15,21 @@ export default function AdventureBrigade() {
     });
   }, []);
 
+  const upvoteItem = (itemID) => {
+    console.log("upvoted", itemID);
+    dispatch({
+      type: "UPVOTE_ADVENTURE",
+      payload: itemID,
+    });
+  };
+
+  const downvoteItem = (itemID) => {
+    dispatch({
+      type: "DOWNVOTE_ADVENTURE",
+      payload: itemID,
+    });
+  };
+
   const deleteItem = (itemID) => {
     console.log("click");
     dispatch({
@@ -81,7 +96,13 @@ export default function AdventureBrigade() {
                   Add To Bucket List
                 </button>
               </td>
-              <td>{adventureItem.total_votes}</td>
+              <td>
+                <button onClick={() => upvoteItem(adventureItem.id)}>⬆️</button>
+                {adventureItem.total_votes}
+                <button onClick={() => downvoteItem(adventureItem.id)}>
+                  ⬇️
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
