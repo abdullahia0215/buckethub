@@ -157,6 +157,47 @@ router.post("/service", rejectUnauthenticated, (req, res) => {
       console.log(error);
     });
 });
+
+// --------------------------- UPVOTE/DOWNVOTE REQUESTS FOR THE BRIGADE PAGES -------------------
+
+router.post("/upvote", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote)
+  VALUES ($1, $2, $3) 
+  ON CONFLICT (bucket_list_item_id, user_id)
+  DO UPDATE SET vote = EXCLUDED.vote
+  WHERE EXCLUDED.vote = 1;`,
+      [req.body.public_itemID, req.user.id, '1']
+    )
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error upvoting", error);
+    });
+});
+
+router.post("/downvote", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote)
+  VALUES ($1, $2, $3) 
+  ON CONFLICT (bucket_list_item_id, user_id)
+  DO UPDATE SET vote = EXCLUDED.vote
+  WHERE EXCLUDED.vote = -1;`,
+      [req.body.public_itemID, req.user.id, '-1']
+    )
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in downvoting", error);
+    });
+});
+
 // --------------------------- DELETE REQUESTS FOR THE BRIGADE PAGES ----------------------------
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   pool
