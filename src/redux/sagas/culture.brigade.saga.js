@@ -27,17 +27,9 @@ function* addCultureItem(action) {
     console.log("error in adding adventure item", error);
   }
 }
-function* addToMyBucket(action) {
-  try {
-    yield axios.post("/api/userbucket/", { user_item: action.payload });
-  } catch (error) {
-    console.log("error in adding to users bucket list", error);
-  }
-}
 function* cultureSaga() {
   yield takeEvery("FETCH_CULTURE", fetchCultureBrigade);
   yield takeEvery("DELETE_CULTURE_ITEM", deleteCultureItem);
   yield takeEvery("ADD_CULTURE_ITEM", addCultureItem);
-  yield takeEvery("ADD_CULTURE_USER_BUCKET", addToMyBucket);
 }
 export default cultureSaga;

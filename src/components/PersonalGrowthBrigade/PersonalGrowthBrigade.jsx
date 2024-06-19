@@ -32,13 +32,10 @@ export default function PersonalGrowthBrigade() {
     setInput("");
   };
 
-  const addToMyBucket = (event) => {
-    const itemForBucketList = event.target
-      .closest("tr")
-      .getAttribute("data-value");
+  const addToMyBucket = (itemToAdd) => {
     dispatch({
-      type: "ADD_GROWTH_USER_BUCKET",
-      payload: itemForBucketList,
+      type: "ADD_TO_USER_BUCKET",
+      payload: itemToAdd,
     });
   };
 
@@ -65,10 +62,7 @@ export default function PersonalGrowthBrigade() {
             <th>Add To Your Bucket list</th>
           </tr>
           {growthBrigade.map((growthItem) => (
-            <tr
-              key={growthItem.id}
-              data-value={growthItem.public_bucket_list_item}
-            >
+            <tr key={growthItem.id}>
               <td>{growthItem.public_bucket_list_item}</td>
 
               <td>
@@ -81,7 +75,13 @@ export default function PersonalGrowthBrigade() {
                 )}
               </td>
               <td>
-                <button onClick={addToMyBucket}>Add To Bucket List</button>
+              <button
+                  onClick={() =>
+                    addToMyBucket(growthItem.public_bucket_list_item)
+                  }
+                >
+                  Add To Bucket List
+                </button>
               </td>
             </tr>
           ))}
