@@ -33,12 +33,14 @@ export default function PersonalGrowthBrigade() {
   };
 
   const addToMyBucket = (event) => {
-    const itemForBucketList = (event.target.closest('tr').getAttribute('data-value'))
+    const itemForBucketList = event.target
+      .closest("tr")
+      .getAttribute("data-value");
     dispatch({
-      type: 'ADD_GROWTH_USER_BUCKET',
-      payload: itemForBucketList
-    })
-  }
+      type: "ADD_GROWTH_USER_BUCKET",
+      payload: itemForBucketList,
+    });
+  };
 
   const handleBucketInput = (event) => {
     setInput(event.target.value);
