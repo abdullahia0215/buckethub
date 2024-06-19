@@ -8,7 +8,18 @@ const {
 // --------------------------- GET REQUESTS FOR THE BRIGADE PAGES ----------------------------
 router.get("/adventure", rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "category_bucket_list_items" WHERE category_id=1;`)
+    .query(
+      `
+    SELECT category_bucket_list_items.id,
+           category_bucket_list_items.user_id,
+           category_bucket_list_items.public_bucket_list_item,
+           COALESCE(SUM(user_votes.vote), 0) AS total_votes
+    FROM category_bucket_list_items
+    LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
+    WHERE category_bucket_list_items.category_id = 1  
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    `
+    )
     .then((result) => {
       res.send(result.rows);
     })
@@ -20,7 +31,18 @@ router.get("/adventure", rejectUnauthenticated, (req, res) => {
 
 router.get("/growth", rejectUnauthenticated, async (req, res) => {
   pool
-    .query(`SELECT * FROM "category_bucket_list_items" WHERE category_id=2;`)
+    .query(
+      `
+    SELECT category_bucket_list_items.id,
+           category_bucket_list_items.user_id,
+           category_bucket_list_items.public_bucket_list_item,
+           COALESCE(SUM(user_votes.vote), 0) AS total_votes
+    FROM category_bucket_list_items
+    LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
+    WHERE category_bucket_list_items.category_id = 2  
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    `
+    )
     .then((result) => {
       res.send(result.rows);
     })
@@ -31,7 +53,18 @@ router.get("/growth", rejectUnauthenticated, async (req, res) => {
 });
 router.get("/culture", rejectUnauthenticated, async (req, res) => {
   pool
-    .query(`SELECT * FROM "category_bucket_list_items" WHERE category_id=3;`)
+    .query(
+      `
+    SELECT category_bucket_list_items.id,
+           category_bucket_list_items.user_id,
+           category_bucket_list_items.public_bucket_list_item,
+           COALESCE(SUM(user_votes.vote), 0) AS total_votes
+    FROM category_bucket_list_items
+    LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
+    WHERE category_bucket_list_items.category_id = 3  
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    `
+    )
     .then((result) => {
       res.send(result.rows);
     })
@@ -42,7 +75,18 @@ router.get("/culture", rejectUnauthenticated, async (req, res) => {
 });
 router.get("/service", rejectUnauthenticated, async (req, res) => {
   pool
-    .query(`SELECT * FROM "category_bucket_list_items" WHERE category_id=4;`)
+    .query(
+      `
+    SELECT category_bucket_list_items.id,
+           category_bucket_list_items.user_id,
+           category_bucket_list_items.public_bucket_list_item,
+           COALESCE(SUM(user_votes.vote), 0) AS total_votes
+    FROM category_bucket_list_items
+    LEFT JOIN user_votes ON category_bucket_list_items.id = user_votes.bucket_list_item_id
+    WHERE category_bucket_list_items.category_id = 4  
+    GROUP BY category_bucket_list_items.id, category_bucket_list_items.user_id, category_bucket_list_items.public_bucket_list_item;
+    `
+    )
     .then((result) => {
       res.send(result.rows);
     })
