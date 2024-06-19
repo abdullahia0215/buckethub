@@ -7,6 +7,7 @@ import adventureSaga from "./adventure.brigade.saga";
 import serviceSaga from "./service.brigade.saga";
 import growthSaga from "./growth.brigade.saga";
 import cultureSaga from "./culture.brigade.saga";
+import voteSaga from "./vote.saga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     serviceSaga(),
     growthSaga(),
     cultureSaga(),
+    voteSaga(),
   ]);
 }
