@@ -99,7 +99,6 @@ export default function CulturalBrigade() {
                 </button>
               </td>
               <td>
-                {/* Upvote button */}
                 <button
                   onClick={() => upvoteItem(cultureItem.id)}
                   style={{
@@ -115,10 +114,8 @@ export default function CulturalBrigade() {
                   ⬆️
                 </button>
 
-                {/* Vote count */}
                 {cultureItem.total_votes}
 
-                {/* Downvote button */}
                 <button
                   onClick={() => downvoteItem(cultureItem.id)}
                   style={{

@@ -99,43 +99,37 @@ export default function AdventureBrigade() {
                 </button>
               </td>
               <td>
-                {userVotes.map((votedItem) => {
-                  if (votedItem.bucket_list_item_id === adventureItem.id) {
-                    return votedItem.upvote ? (
-                      <button
-                        onClick={() => upvoteItem(adventureItem.id)}
-                        style={{ backgroundColor: "orange" }}
-                      >
-                        ⬆️
-                      </button>
-                    ) : (
-                      <button onClick={() => upvoteItem(adventureItem.id)}>
-                        ⬆️
-                      </button>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
+                <button
+                  onClick={() => upvoteItem(adventureItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === adventureItem.id &&
+                        votedItem.upvote
+                    )
+                      ? "orange"
+                      : "inherit",
+                  }}
+                >
+                  ⬆️
+                </button>
+
                 {adventureItem.total_votes}
-                {userVotes.map((votedItem) => {
-                  if (votedItem.bucket_list_item_id === adventureItem.id) {
-                    return votedItem.downvote ? (
-                      <button
-                        onClick={() => downvoteItem(adventureItem.id)}
-                        style={{ backgroundColor: "blue" }}
-                      >
-                        ⬇️
-                      </button>
-                    ) : (
-                      <button onClick={() => downvoteItem(adventureItem.id)}>
-                        ⬇️
-                      </button>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
+
+                <button
+                  onClick={() => downvoteItem(adventureItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === adventureItem.id &&
+                        votedItem.downvote
+                    )
+                      ? "blue"
+                      : "inherit",
+                  }}
+                >
+                  ⬇️
+                </button>
               </td>
             </tr>
           ))}

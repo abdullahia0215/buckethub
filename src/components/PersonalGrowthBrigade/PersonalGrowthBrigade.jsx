@@ -99,43 +99,37 @@ export default function PersonalGrowthBrigade() {
                 </button>
               </td>
               <td>
-              {userVotes.map((votedItem) => {
-                  if (votedItem.bucket_list_item_id === growthItem.id) {
-                    return votedItem.upvote ? (
-                      <button
-                        onClick={() => upvoteItem(growthItem.id)}
-                        style={{ backgroundColor: "orange" }}
-                      >
-                        ⬆️
-                      </button>
-                    ) : (
-                      <button onClick={() => upvoteItem(growthItem.id)}>
-                        ⬆️
-                      </button>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
+                <button
+                  onClick={() => upvoteItem(growthItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === growthItem.id &&
+                        votedItem.upvote
+                    )
+                      ? "orange"
+                      : "inherit",
+                  }}
+                >
+                  ⬆️
+                </button>
+
                 {growthItem.total_votes}
-                {userVotes.map((votedItem) => {
-                  if (votedItem.bucket_list_item_id === growthItem.id) {
-                    return votedItem.downvote ? (
-                      <button
-                        onClick={() => downvoteItem(growthItem.id)}
-                        style={{ backgroundColor: "blue" }}
-                      >
-                        ⬇️
-                      </button>
-                    ) : (
-                      <button onClick={() => downvoteItem(growthItem.id)}>
-                        ⬇️
-                      </button>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
+
+                <button
+                  onClick={() => downvoteItem(growthItem.id)}
+                  style={{
+                    backgroundColor: userVotes.some(
+                      (votedItem) =>
+                        votedItem.bucket_list_item_id === growthItem.id &&
+                        votedItem.downvote
+                    )
+                      ? "blue"
+                      : "inherit",
+                  }}
+                >
+                  ⬇️
+                </button>
               </td>
             </tr>
           ))}
