@@ -14,17 +14,43 @@ export default function ServiceBrigade() {
       type: "FETCH_SERVICE",
     });
   }, []);
+
   const handleBucketInput = (event) => {
     setInput(event.target.value);
     console.log(input);
   };
+
+  const deleteItem = (itemID) => {
+    console.log("click");
+    dispatch({
+      type: "DELETE_SERVICE_ITEM",
+      payload: itemID,
+    });
+  };
+
+  const addItem = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "ADD_SERVICE_ITEM",
+      payload: input,
+    });
+    setInput("");
+  };
+
+  const addToMyBucket = (itemToAdd) => {
+    dispatch({
+      type: "ADD_TO_USER_BUCKET",
+      payload: itemToAdd,
+    });
+  };
+
   return (
     <>
       <h1>Service</h1>
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
-      <form>
+      <form onSubmit={addItem}>
         <input onChange={handleBucketInput}></input>
         <button>Submit Suggestion</button>
       </form>
@@ -37,13 +63,22 @@ export default function ServiceBrigade() {
           {serviceBrigade.map((serviceItem) => (
             <tr key={serviceItem.id}>
               <td>{serviceItem.public_bucket_list_item}</td>
-              {user.id === serviceItem.user_id ? (
-                <td>
-                  <button>Delete</button>
-                </td>
-              ) : (
-                ""
-              )}
+              <td>
+                {user.id === serviceItem.user_id ? (
+                  <button onClick={() => deleteItem(itemID)}>Delete</button>
+                ) : (
+                  ""
+                )}
+              </td>
+              <td>
+                <button
+                  onClick={() =>
+                    addToMyBucket(serviceItem.public_bucket_list_item)
+                  }
+                >
+                  Add To Bucket List
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

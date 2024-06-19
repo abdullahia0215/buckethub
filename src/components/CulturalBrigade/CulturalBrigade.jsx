@@ -67,7 +67,7 @@ export default function CulturalBrigade() {
               <td>
               {user.id === cultureItem.user_id ? (
                 
-                  <button onClick={deleteItem(cultureItem.id)}>Delete</button>
+                  <button onClick={() => deleteItem(cultureItem.id)}>Delete</button>
                 
               ) : (
                 ""
