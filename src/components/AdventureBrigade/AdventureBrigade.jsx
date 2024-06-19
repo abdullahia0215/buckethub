@@ -13,6 +13,9 @@ export default function AdventureBrigade() {
     dispatch({
       type: "FETCH_ADVENTURE",
     });
+    dispatch({
+      type: "FETCH_MY_VOTES",
+    });
   }, []);
 
   const upvoteItem = (itemID) => {

@@ -74,6 +74,14 @@ function* serviceDownvoteSaga(action) {
     console.log("error downvoting service item", error);
   }
 }
+function* fetchMyVotes() {
+  try {
+    const response = yield axios.get("api/brigades/uservote");
+    yield put({ type: "SET_MY_VOTES", payload: response.data });
+  } catch (error) {
+    console.log("error fetching the users votes", error);
+  }
+}
 
 function* voteSaga() {
   yield takeEvery("UPVOTE_ADVENTURE", adventureUpvoteSaga);
@@ -87,5 +95,7 @@ function* voteSaga() {
 
   yield takeEvery("UPVOTE_SERVICE", serviceUpvoteSaga);
   yield takeEvery("DOWNVOTE_SERVICE", serviceDownvoteSaga);
+
+  yield takeEvery("FETCH_MY_VOTES", fetchMyVotes);
 }
 export default voteSaga;

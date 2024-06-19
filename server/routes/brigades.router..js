@@ -100,6 +100,18 @@ router.get("/service", rejectUnauthenticated, async (req, res) => {
     });
 });
 
+router.get("/uservote", (req, res) => {
+  pool
+    .query(`SELECT * FROM user_votes WHERE user_id=$1`, [req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in fetching votes", error);
+    });
+});
+
 // --------------------------- POST REQUESTS FOR THE BRIGADE PAGES ----------------------------
 router.post("/adventure", rejectUnauthenticated, (req, res) => {
   pool
@@ -163,12 +175,16 @@ router.post("/service", rejectUnauthenticated, (req, res) => {
 router.post("/upvote", rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote)
-  VALUES ($1, $2, $3) 
-  ON CONFLICT (bucket_list_item_id, user_id)
-  DO UPDATE SET vote = EXCLUDED.vote
-  WHERE EXCLUDED.vote = 1;`,
-      [req.body.public_itemID, req.user.id, '1']
+      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote, upvote, downvote)
+      VALUES ($1, $2, $3, true, false) 
+      ON CONFLICT (bucket_list_item_id, user_id)
+      DO UPDATE SET 
+          vote = EXCLUDED.vote, 
+          upvote = true, 
+          downvote = false
+      WHERE EXCLUDED.vote = 1;
+      `,
+      [req.body.public_itemID, req.user.id, "1"]
     )
     .then(() => {
       res.sendStatus(201);
@@ -182,12 +198,15 @@ router.post("/upvote", rejectUnauthenticated, (req, res) => {
 router.post("/downvote", rejectUnauthenticated, (req, res) => {
   pool
     .query(
-      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote)
-  VALUES ($1, $2, $3) 
+      `INSERT INTO user_votes (bucket_list_item_id, user_id, vote, upvote, downvote)
+  VALUES ($1, $2, $3, false, true) 
   ON CONFLICT (bucket_list_item_id, user_id)
-  DO UPDATE SET vote = EXCLUDED.vote
+  DO UPDATE SET 
+  vote = EXCLUDED.vote,
+  upvote = false,
+  downvote = true
   WHERE EXCLUDED.vote = -1;`,
-      [req.body.public_itemID, req.user.id, '-1']
+      [req.body.public_itemID, req.user.id, "-1"]
     )
     .then(() => {
       res.sendStatus(201);

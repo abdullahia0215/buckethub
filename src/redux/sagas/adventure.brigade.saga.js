@@ -5,6 +5,7 @@ function* fetchAdventureBrigade() {
   try {
     const response = yield axios.get("/api/brigades/adventure");
     yield put({ type: "SET_ADVENTURE", payload: response.data });
+    yield put({ type: 'FETCH_MY_VOTES'})
   } catch (error) {
     console.log("error in fetching adventure saga", error);
   }
