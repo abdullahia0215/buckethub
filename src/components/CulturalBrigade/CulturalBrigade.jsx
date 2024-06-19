@@ -15,6 +15,20 @@ export default function CulturalBrigade() {
     });
   }, []);
 
+  const upvoteItem = (itemID) => {
+    console.log("upvoted", itemID);
+    dispatch({
+      type: "UPVOTE_CULTURE",
+      payload: itemID,
+    });
+  };
+
+  const downvoteItem = (itemID) => {
+    dispatch({
+      type: "DOWNVOTE_CULTURE",
+      payload: itemID,
+    });
+  };
 
   const deleteItem = (itemID) => {
     console.log("click");
@@ -34,7 +48,7 @@ export default function CulturalBrigade() {
   };
 
   const addToMyBucket = (itemToAdd) => {
-    console.log('weeee')
+    console.log("weeee");
     dispatch({
       type: "ADD_TO_USER_BUCKET",
       payload: itemToAdd,
@@ -51,7 +65,7 @@ export default function CulturalBrigade() {
       <button onClick={() => history.push("/brigades")}>
         Back To Brigades
       </button>
-      <form onSubmit={addItem}> 
+      <form onSubmit={addItem}>
         <input onChange={handleBucketInput}></input>
         <button>Submit Suggestion</button>
       </form>
@@ -65,19 +79,27 @@ export default function CulturalBrigade() {
             <tr key={cultureItem.id}>
               <td>{cultureItem.public_bucket_list_item}</td>
               <td>
-              {user.id === cultureItem.user_id ? (
-                
-                  <button onClick={() => deleteItem(cultureItem.id)}>Delete</button>
-                
-              ) : (
-                ""
-              )}
+                {user.id === cultureItem.user_id ? (
+                  <button onClick={() => deleteItem(cultureItem.id)}>
+                    Delete
+                  </button>
+                ) : (
+                  ""
+                )}
               </td>
               <td>
-              <button onClick={() => addToMyBucket(cultureItem.public_bucket_list_item)}>Add To Bucket List</button>
+                <button
+                  onClick={() =>
+                    addToMyBucket(cultureItem.public_bucket_list_item)
+                  }
+                >
+                  Add To Bucket List
+                </button>
               </td>
               <td>
+                <button onClick={() => upvoteItem(cultureItem.id)}>⬆️</button>
                 {cultureItem.total_votes}
+                <button onClick={() => downvoteItem(cultureItem.id)}>⬇️</button>
               </td>
             </tr>
           ))}

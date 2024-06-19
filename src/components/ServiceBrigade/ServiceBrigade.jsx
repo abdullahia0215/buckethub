@@ -15,6 +15,21 @@ export default function ServiceBrigade() {
     });
   }, []);
 
+  const upvoteItem = (itemID) => {
+    console.log("upvoted", itemID);
+    dispatch({
+      type: "UPVOTE_SERVICE",
+      payload: itemID,
+    });
+  };
+
+  const downvoteItem = (itemID) => {
+    dispatch({
+      type: "DOWNVOTE_SERVICE",
+      payload: itemID,
+    });
+  };
+
   const handleBucketInput = (event) => {
     setInput(event.target.value);
     console.log(input);
@@ -81,7 +96,11 @@ export default function ServiceBrigade() {
                   Add To Bucket List
                 </button>
               </td>
-              <td>{serviceItem.total_votes}</td>
+              <td>
+                <button onClick={() => upvoteItem(serviceItem.id)}>⬆️</button>
+                {serviceItem.total_votes}
+                <button onClick={() => downvoteItem(serviceItem.id)}>⬇️</button>
+              </td>
             </tr>
           ))}
         </tbody>
