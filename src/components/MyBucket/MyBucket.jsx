@@ -39,7 +39,7 @@ export default function MyBucket() {
       type: "ADD_USER_BUCKET_ITEM",
       payload: input,
     });
-    setInput('');
+    setInput("");
   };
 
   const handleBucketInput = (event) => {
@@ -67,9 +67,13 @@ export default function MyBucket() {
             <tr key={userItem.id}>
               <td>{userItem.bucket_list_item}</td>
               <td>
-                <button onClick={() => completeItem(userItem.id)}>
-                  Complete
-                </button>
+                {userItem.completion_status ? (
+                  <button disabled>Complete </button>
+                ) : (
+                  <button onClick={() => completeItem(userItem.id)}>
+                    Complete
+                  </button>
+                )}
               </td>
 
               <td>
