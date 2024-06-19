@@ -9,6 +9,8 @@ export default function AdventureBrigade() {
     (store) => store.brigadeReducers.adventureReducer
   );
   const user = useSelector((store) => store.user);
+  const userVotes = useSelector((store) => store.userVoteReducer);
+
   useEffect(() => {
     dispatch({
       type: "FETCH_ADVENTURE",
@@ -100,6 +102,13 @@ export default function AdventureBrigade() {
                 </button>
               </td>
               <td>
+                {userVotes.map((votedItem) => {
+                  if (votedItem.bucket_list_item_id === adventureItem.id) {
+                    return votedItem.upvote ? <p>Upvoted</p> : <p>Downvoted</p>;
+                  } else {
+                    return null;
+                  }
+                })}
                 <button onClick={() => upvoteItem(adventureItem.id)}>⬆️</button>
                 {adventureItem.total_votes}
                 <button onClick={() => downvoteItem(adventureItem.id)}>
