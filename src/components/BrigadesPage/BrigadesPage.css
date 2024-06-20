@@ -8,9 +8,9 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
     overflow: hidden;
+    border-radius: 15px; /* Adjust the value for more or less rounding */
 }
 
 #adventure-button::before {
@@ -24,10 +24,11 @@
     filter: grayscale(0%);
     transition: filter 0.3s ease;
     z-index: -1; /* Ensure the image is behind the button text */
+    border-radius: 15px; /* Match the rounding of the button */
 }
 
 #adventure-button:hover::before {
-    filter: grayscale(70%);
+    filter: grayscale(100%);
 }
 
 #adventure-button span {
@@ -45,9 +46,9 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
     overflow: hidden;
+    border-radius: 15px; /* Adjust the value for more or less rounding */
 }
 
 #culture-button::before {
@@ -61,10 +62,11 @@
     filter: grayscale(0%);
     transition: filter 0.3s ease;
     z-index: -1; /* Ensure the image is behind the button text */
+    border-radius: 15px; /* Match the rounding of the button */
 }
 
 #culture-button:hover::before {
-    filter: grayscale(70%);
+    filter: grayscale(100%);
 }
 
 #culture-button span {
@@ -82,9 +84,9 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
     overflow: hidden;
+    border-radius: 15px; /* Adjust the value for more or less rounding */
 }
 
 #service-button::before {
@@ -98,10 +100,11 @@
     filter: grayscale(0%);
     transition: filter 0.3s ease;
     z-index: -1; /* Ensure the image is behind the button text */
+    border-radius: 15px; /* Match the rounding of the button */
 }
 
 #service-button:hover::before {
-    filter: grayscale(70%);
+    filter: grayscale(100%);
 }
 
 #service-button span {
@@ -119,9 +122,9 @@
     cursor: pointer;
     text-align: center;
     font-size: 16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-decoration: none;
     overflow: hidden;
+    border-radius: 15px; /* Adjust the value for more or less rounding */
 }
 
 #growth-button::before {
@@ -135,10 +138,11 @@
     filter: grayscale(0%);
     transition: filter 0.3s ease;
     z-index: -1; /* Ensure the image is behind the button text */
+    border-radius: 15px; /* Match the rounding of the button */
 }
 
 #growth-button:hover::before {
-    filter: grayscale(70%);
+    filter: grayscale(100%);
 }
 
 #growth-button span {

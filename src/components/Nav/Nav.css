@@ -1,42 +1,32 @@
-.nav {
-  /* flex box layout */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #00acb0;
-  overflow: hidden;
+.navbar-collapse {
+  padding: 10px 0;
 }
 
-.nav a {
-  text-decoration: none;
-}
-
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
+.navbar-nav {
   margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
-.navLink {
+.nav-item {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
+}
 
-  /* these last two make the logout button in
-  the nav bar look like another link */
+.nav-link {
+  display: block;
+  /* padding: 10px 15px; */
+  text-decoration: none;
+  color: #f2f2f2;
+}
+
+.nav-link.button {
+  /* padding: 10px 20px; Adjust padding for the logout button */
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  outline: 0;
+  color: #f2f2f2;
 }
 
-.navLink:hover {
+.nav-link.button:hover {
   background-color: #008183;
 }
