@@ -8,36 +8,55 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">BucketHub</h2>
-      </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
-
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/brigades">
-              Brigades
-            </Link>
-            <Link className="navLink" to="/myBucket">
-              My Bucket
-            </Link>
-            <Link className="navLink" to="/about">
-              About
-            </Link>
-            <LogOutButton className="navLink" />
-          </>
-        )}
+    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/home">
+          BucketHub
+        </Link>
+        {/* <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          // data-bs-target="#navbarColor01"
+          // aria-controls="navbarColor01"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button> */}
+        <div className="collapse navbar-collapse" id="navbarColor01">
+          <ul className="navbar-nav ms-auto">
+            {user.id === null && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login / Register
+                </Link>
+              </li>
+            )}
+            {user.id && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/brigades">
+                    Brigades
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/myBucket">
+                    My Bucket
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/about">
+                    About
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <LogOutButton className="nav-link" />
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
 
