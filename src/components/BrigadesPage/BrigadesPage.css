@@ -56,7 +56,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background: url("../images/culture.jpg") center/cover no-repeat;
     filter: grayscale(0%);
@@ -94,7 +94,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 94%;
     height: 100%;
     background: url("../images/service.jpg") center/cover no-repeat;
     filter: grayscale(0%);
@@ -132,7 +132,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 94%;
     height: 100%;
     background: url("../images/growth.jpg") center/cover no-repeat;
     filter: grayscale(0%);
@@ -149,3 +149,23 @@
     position: relative;
     z-index: 1; /* Ensure the text is above the image */
 }
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Adjust height as per your requirement */
+  }
+  
+  /* Optional: Additional styling for the table */
+  .buttons-container table {
+    border-collapse: collapse;
+    margin-top: 20px; /* Adjust spacing as needed */
+  }
+  
+  .buttons-container td {
+    padding: 10px;
+  }
+  
+  

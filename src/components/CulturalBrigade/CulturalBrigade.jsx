@@ -71,7 +71,7 @@ export default function CulturalBrigade() {
         <input onChange={handleBucketInput}></input>
         <button>Submit Suggestion</button>
       </form>
-      <table>
+      <table className="">
         <tbody>
           <tr>
             <th>Name</th>
