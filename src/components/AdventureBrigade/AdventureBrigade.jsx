@@ -63,14 +63,14 @@ export default function AdventureBrigade() {
   return (
     <>
       <h1>Adventure</h1>
-      <button onClick={() => history.push("/brigades")}>
+      <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
       <form onSubmit={addItem}>
         <input value={input} onChange={handleBucketInput} required></input>
-        <button>Submit Suggestion</button>
+        <button className="btn">Submit Suggestion</button>
       </form>
-      <table>
+      <table className="table table-hover">
         <tbody>
           <tr>
             <th>Name</th>
@@ -82,7 +82,7 @@ export default function AdventureBrigade() {
               <td>{adventureItem.public_bucket_list_item}</td>
               <td>
                 {user.id === adventureItem.user_id ? (
-                  <button onClick={() => deleteItem(adventureItem.id)}>
+                  <button onClick={() => deleteItem(adventureItem.id)} className="btn">
                     Delete
                   </button>
                 ) : (
@@ -94,6 +94,7 @@ export default function AdventureBrigade() {
                   onClick={() =>
                     addToMyBucket(adventureItem.public_bucket_list_item)
                   }
+                  className="btn"
                 >
                   Add To Bucket List
                 </button>
@@ -110,6 +111,7 @@ export default function AdventureBrigade() {
                       ? "orange"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬆️
                 </button>
@@ -127,6 +129,7 @@ export default function AdventureBrigade() {
                       ? "blue"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬇️
                 </button>

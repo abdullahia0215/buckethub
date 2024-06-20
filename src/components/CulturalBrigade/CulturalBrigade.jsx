@@ -64,14 +64,14 @@ export default function CulturalBrigade() {
   return (
     <>
       <h1>Cultural</h1>
-      <button onClick={() => history.push("/brigades")}>
+      <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
       <form onSubmit={addItem}>
         <input onChange={handleBucketInput}></input>
-        <button>Submit Suggestion</button>
+        <button className="btn">Submit Suggestion</button>
       </form>
-      <table className="">
+      <table className="table table-hover">
         <tbody>
           <tr>
             <th>Name</th>
@@ -82,7 +82,10 @@ export default function CulturalBrigade() {
               <td>{cultureItem.public_bucket_list_item}</td>
               <td>
                 {user.id === cultureItem.user_id ? (
-                  <button onClick={() => deleteItem(cultureItem.id)}>
+                  <button
+                    onClick={() => deleteItem(cultureItem.id)}
+                    className="btn"
+                  >
                     Delete
                   </button>
                 ) : (
@@ -94,6 +97,7 @@ export default function CulturalBrigade() {
                   onClick={() =>
                     addToMyBucket(cultureItem.public_bucket_list_item)
                   }
+                  className="btn"
                 >
                   Add To Bucket List
                 </button>
@@ -110,6 +114,7 @@ export default function CulturalBrigade() {
                       ? "orange"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬆️
                 </button>
@@ -127,6 +132,7 @@ export default function CulturalBrigade() {
                       ? "blue"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬇️
                 </button>

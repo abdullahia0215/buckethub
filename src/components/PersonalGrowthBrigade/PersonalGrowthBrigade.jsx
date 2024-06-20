@@ -61,15 +61,15 @@ export default function PersonalGrowthBrigade() {
   return (
     <>
       <h1>PersonalGrowth</h1>
-      <button onClick={() => history.push("/brigades")}>
+      <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
       <form onSubmit={addItem}>
         <input onChange={handleBucketInput}></input>
 
-        <button>Submit Suggestion</button>
+        <button className="btn">Submit Suggestion</button>
       </form>
-      <table>
+      <table className="table table-hover">
         <tbody>
           <tr>
             <th>Name</th>
@@ -82,7 +82,10 @@ export default function PersonalGrowthBrigade() {
 
               <td>
                 {user.id === growthItem.user_id ? (
-                  <button onClick={() => deleteItem(growthItem.id)}>
+                  <button
+                    onClick={() => deleteItem(growthItem.id)}
+                    className="btn"
+                  >
                     Delete
                   </button>
                 ) : (
@@ -94,6 +97,7 @@ export default function PersonalGrowthBrigade() {
                   onClick={() =>
                     addToMyBucket(growthItem.public_bucket_list_item)
                   }
+                  className="btn"
                 >
                   Add To Bucket List
                 </button>
@@ -110,6 +114,7 @@ export default function PersonalGrowthBrigade() {
                       ? "orange"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬆️
                 </button>
@@ -127,6 +132,7 @@ export default function PersonalGrowthBrigade() {
                       ? "blue"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬇️
                 </button>

@@ -64,14 +64,14 @@ export default function ServiceBrigade() {
   return (
     <>
       <h1>Service</h1>
-      <button onClick={() => history.push("/brigades")}>
+      <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
       <form onSubmit={addItem}>
         <input onChange={handleBucketInput}></input>
-        <button>Submit Suggestion</button>
+        <button className="btn">Submit Suggestion</button>
       </form>
-      <table>
+      <table className="table table-hover">
         <tbody>
           <tr>
             <th>Name</th>
@@ -82,7 +82,7 @@ export default function ServiceBrigade() {
               <td>{serviceItem.public_bucket_list_item}</td>
               <td>
                 {user.id === serviceItem.user_id ? (
-                  <button onClick={() => deleteItem(serviceItem.id)}>
+                  <button onClick={() => deleteItem(serviceItem.id)} className="btn">
                     Delete
                   </button>
                 ) : (
@@ -94,6 +94,7 @@ export default function ServiceBrigade() {
                   onClick={() =>
                     addToMyBucket(serviceItem.public_bucket_list_item)
                   }
+                  className="btn"
                 >
                   Add To Bucket List
                 </button>
@@ -110,6 +111,7 @@ export default function ServiceBrigade() {
                       ? "orange"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬆️
                 </button>
@@ -127,6 +129,7 @@ export default function ServiceBrigade() {
                       ? "blue"
                       : "inherit",
                   }}
+                  className="btn"
                 >
                   ⬇️
                 </button>

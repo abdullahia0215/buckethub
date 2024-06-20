@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import '../MyBucket/MyBucket.css'
 
 export default function MyBucket() {
   const userBucket = useSelector((store) => store.myBucketReducer);
@@ -49,7 +50,7 @@ export default function MyBucket() {
   return (
     <>
       <h1>My Bucket</h1>
-      <form onSubmit={addItem}>
+      <form onSubmit={addItem} className="form-inline">
         <input
           value={input}
           onChange={handleBucketInput}
