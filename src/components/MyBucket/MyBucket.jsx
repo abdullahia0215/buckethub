@@ -59,26 +59,28 @@ export default function MyBucket() {
         ></input>
         <button className="btn btn-primary">Add To Bucket List</button>
       </form>
-      <table>
+      <table className="table table-hover">
         <tbody>
           <tr>
             <th>Name</th>
+            <th>Complete</th>
+            <th>Delete</th>
           </tr>
           {userBucket.map((userItem) => (
             <tr key={userItem.id}>
               <td>{userItem.bucket_list_item}</td>
               <td>
                 {userItem.completion_status ? (
-                  <button disabled>Complete </button>
+                  <button disabled className="btn btn-dark">Complete </button>
                 ) : (
-                  <button onClick={() => completeItem(userItem.id)}>
+                  <button onClick={() => completeItem(userItem.id)} className="btn btn-success">
                     Complete
                   </button>
                 )}
               </td>
 
               <td>
-                <button onClick={() => deleteItem(userItem.id)}>Delete</button>
+                <button onClick={() => deleteItem(userItem.id)} className="btn btn-danger">Delete</button>
               </td>
             </tr>
           ))}

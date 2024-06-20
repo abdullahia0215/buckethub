@@ -1,0 +1,20 @@
+#adventure-button {
+  background-image: url("../images/adventure.jpg");
+  color: white;
+  padding: 35px 125px 35px 125px;
+}
+#culture-button {
+  background-image: url("../images/culture.jpg");
+  color: white;
+  padding: 35px 125px 35px 125px;
+}
+#service-button {
+  background-image: url("../images/service.jpg");
+  color: white;
+  padding: 35px 125px 35px 125px;
+}
+#growth-button {
+  background-image: url("../images/growth.jpg");
+  color: white;
+  padding: 35px 125px 35px 125px;
+}
