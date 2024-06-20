@@ -156,12 +156,13 @@
     align-items: center; /* Center horizontally */
     justify-content: center; /* Center vertically */
     height: 100vh; /* Adjust height as per your requirement */
+
   }
   
   /* Optional: Additional styling for the table */
   .buttons-container table {
-    border-collapse: collapse;
-    margin-top: 20px; /* Adjust spacing as needed */
+    border-collapse: collapse; /* Adjust spacing as needed */
+    margin-bottom: 350px;
   }
   
   .buttons-container td {
