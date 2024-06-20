@@ -54,9 +54,10 @@ export default function MyBucket() {
           value={input}
           onChange={handleBucketInput}
           placeholder="What's next?"
+          className="form-control"
           required
         ></input>
-        <button>Add To Bucket List</button>
+        <button className="btn btn-primary">Add To Bucket List</button>
       </form>
       <table>
         <tbody>
