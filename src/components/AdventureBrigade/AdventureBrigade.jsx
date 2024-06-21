@@ -66,8 +66,8 @@ export default function AdventureBrigade() {
       <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
-      <form onSubmit={addItem}>
-        <input value={input} onChange={handleBucketInput} required></input>
+      <form onSubmit={addItem} className="form-inline">
+        <input value={input} onChange={handleBucketInput} required className="form-control"></input>
         <button className="btn">Submit Suggestion</button>
       </form>
       <table className="table table-hover">

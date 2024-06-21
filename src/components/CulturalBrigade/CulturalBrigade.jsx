@@ -67,8 +67,8 @@ export default function CulturalBrigade() {
       <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
-      <form onSubmit={addItem}>
-        <input onChange={handleBucketInput}></input>
+      <form onSubmit={addItem} className="form-inline">
+        <input onChange={handleBucketInput} className="form-control"></input>
         <button className="btn">Submit Suggestion</button>
       </form>
       <table className="table table-hover">
