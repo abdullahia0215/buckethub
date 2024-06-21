@@ -1,39 +1,85 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import '../MyBucket/MyBucket.css'
+import Confetti from "react-confetti";
+import swal from "sweetalert";
+import { useWindowSize } from "@uidotdev/usehooks";
+import "../MyBucket/MyBucket.css";
 
 export default function MyBucket() {
   const userBucket = useSelector((store) => store.myBucketReducer);
-
-  let [input, setInput] = useState("");
+  const { width, height } = useWindowSize();
+  const [input, setInput] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false); 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: "FETCH_MY_BUCKET" });
-  }, []);
+  }, [dispatch]);
 
   const completeItem = (itemID) => {
-    if (
-      confirm(
-        "Are you sure you want to mark this complete? You will not be able to change it's status back to incomplete."
-      ) === true
-    ) {
-      console.log("item completed");
-      alert("congrats! you ticked another off the list :D");
-      dispatch({ type: "COMPLETE_USER_BUCKET_ITEM", payload: itemID });
-    } else {
-      return;
-    }
-  };
-  const deleteItem = (itemID) => {
-    if (confirm("Are you sure you'd like to delete this item?") === true) {
-      console.log("item delete");
-      dispatch({ type: "DELETE_USER_BUCKET_ITEM", payload: itemID });
-    } else {
-      return;
-    }
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to change its status back to incomplete.",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Mark Complete",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch({ type: "COMPLETE_USER_BUCKET_ITEM", payload: itemID });
+        swal(
+          "Congratulations!",
+          "You ticked another off the list :D",
+          "success"
+        );
+        setShowConfetti(true); 
+        setTimeout(() => {
+          setShowConfetti(false); 
+        }, 5000);
+      }
+    });
   };
 
+  const deleteItem = (itemID) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this item!",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch({ type: "DELETE_USER_BUCKET_ITEM", payload: itemID });
+      }
+    });
+  };
   const addItem = (event) => {
     event.preventDefault();
     dispatch({
@@ -49,46 +95,57 @@ export default function MyBucket() {
   };
   return (
     <>
-    <div style={{ margin: "40px" }}>
-     <h1 style={{ margin: '20px', textAlign: 'center' }}>My Bucket</h1>
+      {showConfetti && <Confetti width={width} height={height} tweenDuration={5000}/>}
+      <div style={{ margin: "40px" }}>
+        <h1 style={{ margin: "20px", textAlign: "center" }}>My Bucket</h1>
 
-      <form onSubmit={addItem} className="form-inline">
-        <input
-          value={input}
-          onChange={handleBucketInput}
-          placeholder="What's next?"
-          className="form-control"
-          required
-        ></input>
-        <button className="btn">Add To Bucket List</button>
-      </form>
-      <table className="table table-hover">
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Complete</th>
-            <th>Delete</th>
-          </tr>
-          {userBucket.map((userItem) => (
-            <tr key={userItem.id}>
-              <td>{userItem.bucket_list_item}</td>
-              <td>
-                {userItem.completion_status ? (
-                  <button disabled className="btn">Complete </button>
-                ) : (
-                  <button onClick={() => completeItem(userItem.id)} className="btn complete-btn">
-                    Complete
-                  </button>
-                )}
-              </td>
-
-              <td>
-                <button onClick={() => deleteItem(userItem.id)} className="btn delete-btn">Delete</button>
-              </td>
+        <form onSubmit={addItem} className="form-inline">
+          <input
+            value={input}
+            onChange={handleBucketInput}
+            placeholder="What's next?"
+            className="form-control"
+            required
+          ></input>
+          <button className="btn">Add To Bucket List</button>
+        </form>
+        <table className="table table-hover">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Complete</th>
+              <th>Delete</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {userBucket.map((userItem) => (
+              <tr key={userItem.id}>
+                <td>{userItem.bucket_list_item}</td>
+                <td>
+                  {userItem.completion_status ? (
+                    <button disabled className="btn">
+                      Complete{" "}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => completeItem(userItem.id)}
+                      className="btn complete-btn"
+                    >
+                      Complete
+                    </button>
+                  )}
+                </td>
+
+                <td>
+                  <button
+                    onClick={() => deleteItem(userItem.id)}
+                    className="btn delete-btn"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
