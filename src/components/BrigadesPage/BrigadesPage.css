@@ -1,21 +1,20 @@
+/* Common button styles for each specific button ID */
 #adventure-button, #culture-button, #service-button, #growth-button {
-  position: relative;
-  display: inline-block;
-  padding: 52.5px 187.5px; /* Scaled up by 1.5x */
+  padding: 70px 200px; /* Increased padding for larger buttons */
   color: white;
   background: none;
   border: none;
   cursor: pointer;
   text-align: center;
-  font-size: 24px; /* Scaled up by 1.5x */
+  font-size: 32px; /* Increased font size for larger text */
   text-decoration: none;
   overflow: hidden;
-  border-radius: 22.5px; /* Scaled up by 1.5x */
-  text-shadow: 
-  -0.75px -0.75px 0 #000,  
-   0.75px -0.75px 0 #000,
-  -0.75px  0.75px 0 #000,
-   0.75px  0.75px 0 #000; 
+  border-radius: 30px; /* Adjust border radius for proportion */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  position: relative;
+  flex: 1; /* Makes all buttons take equal space */
+  max-width: 100%;
+  margin: 10px; /* Space around each button */
 }
 
 #adventure-button::before, #culture-button::before, #service-button::before, #growth-button::before {
@@ -29,7 +28,7 @@
   filter: grayscale(0%);
   transition: filter 0.3s ease;
   z-index: -1;
-  border-radius: 22.5px; /* Scaled up by 1.5x */
+  border-radius: 30px; /* Adjust border radius for proportion */
 }
 
 #adventure-button:hover::before, #culture-button:hover::before, #service-button:hover::before, #growth-button:hover::before {
@@ -54,28 +53,25 @@
 
 #adventure-button span, #culture-button span, #service-button span, #growth-button span {
   position: relative;
-  z-index: 1; /* Ensure the text is above the image */
+  z-index: 1;
 }
 
 .buttons-container {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   margin-top: 100px;
-  margin-left: 50px;
-  text-align: center; /* Center table horizontally */
-}
-
-.buttons-container table {
-  border-collapse: collapse;
-  margin: auto; /* Center table horizontally */
-}
-
-.buttons-container td {
-  padding: 10px;
 }
 
 .brigadeBtn {
-  width: 100%;
+  flex: 1;
+  min-width: 200px; /* Ensure buttons don’t get too small */
+  margin: 10px;
+}
+#service-button {
+  font-size:27px
+}
+#growth-button {
+  font-size:30px
 }

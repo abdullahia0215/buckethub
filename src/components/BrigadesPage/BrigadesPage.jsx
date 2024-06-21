@@ -6,7 +6,7 @@ export default function BrigadesPage() {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center', margin: '30px' }}>Brigades</h1>
+      <h1 style={{ textAlign: "center", marginTop: "30px" }}>Brigades</h1>
       <div className="buttons-container">
         <table>
           <tbody>
@@ -46,7 +46,7 @@ export default function BrigadesPage() {
                   id="growth-button"
                   className="btn brigadeBtn"
                 >
-                  Personal Growth/Learning
+                  Personal Growth
                 </button>
               </td>
             </tr>
