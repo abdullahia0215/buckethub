@@ -112,6 +112,7 @@ export default function AdventureBrigade() {
             onChange={handleBucketInput}
             required
             className="form-control"
+            placeholder="Share your ideas for an adventure..."
           ></input>
           <button className="btn">Submit Suggestion</button>
         </form>

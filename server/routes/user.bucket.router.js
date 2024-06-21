@@ -7,7 +7,7 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "user_bucket_items" WHERE user_id=$1`, [req.user.id])
+    .query(`SELECT * FROM "user_bucket_items" WHERE user_id=$1 ORDER BY completion_status`, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })

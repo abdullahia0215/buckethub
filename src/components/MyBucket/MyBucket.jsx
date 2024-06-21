@@ -49,6 +49,7 @@ export default function MyBucket() {
   };
   return (
     <>
+    <div style={{ margin: "40px" }}>
      <h1 style={{ margin: '20px', textAlign: 'center' }}>My Bucket</h1>
 
       <form onSubmit={addItem} className="form-inline">
@@ -59,7 +60,7 @@ export default function MyBucket() {
           className="form-control"
           required
         ></input>
-        <button className="btn btn-primary">Add To Bucket List</button>
+        <button className="btn">Add To Bucket List</button>
       </form>
       <table className="table table-hover">
         <tbody>
@@ -73,21 +74,22 @@ export default function MyBucket() {
               <td>{userItem.bucket_list_item}</td>
               <td>
                 {userItem.completion_status ? (
-                  <button disabled className="btn btn-dark">Complete </button>
+                  <button disabled className="btn">Complete </button>
                 ) : (
-                  <button onClick={() => completeItem(userItem.id)} className="btn btn-success">
+                  <button onClick={() => completeItem(userItem.id)} className="btn complete-btn">
                     Complete
                   </button>
                 )}
               </td>
 
               <td>
-                <button onClick={() => deleteItem(userItem.id)} className="btn btn-danger">Delete</button>
+                <button onClick={() => deleteItem(userItem.id)} className="btn delete-btn">Delete</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </>
   );
 }

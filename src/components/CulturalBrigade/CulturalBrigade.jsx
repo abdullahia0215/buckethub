@@ -103,7 +103,7 @@ export default function CulturalBrigade() {
         Back To Brigades
       </button>
       <form onSubmit={addItem} className="form-inline">
-        <input onChange={handleBucketInput} className="form-control"></input>
+        <input onChange={handleBucketInput} className="form-control" placeholder="Share your ideas for exploring cultures..."></input>
         <button className="btn">Submit Suggestion</button>
       </form>
       <table className="table table-hover">

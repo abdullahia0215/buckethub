@@ -101,7 +101,7 @@ export default function PersonalGrowthBrigade() {
           Back To Brigades
         </button>
         <form onSubmit={addItem} className="form-inline">
-          <input onChange={handleBucketInput} className="form-control"></input>
+          <input onChange={handleBucketInput} className="form-control" placeholder="Share your ideas for personal growth..."></input>
 
           <button className="btn">Submit Suggestion</button>
         </form>
