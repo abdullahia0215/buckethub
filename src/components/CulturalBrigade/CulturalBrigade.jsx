@@ -63,7 +63,8 @@ export default function CulturalBrigade() {
   };
   return (
     <>
-      <h1>Cultural</h1>
+    <div style={{margin: '40px'}}>
+      <h1 style={{ margin: '20px', textAlign: 'center' }} >Cultural</h1>
       <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
@@ -74,8 +75,10 @@ export default function CulturalBrigade() {
       <table className="table table-hover">
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Add To Your Bucket list</th>
+          <th>Name</th>
+              <th>Delete</th>
+              <th>Add To Your Bucket list</th>
+              <th>Votes</th>
           </tr>
           {cultureBrigade.map((cultureItem) => (
             <tr key={cultureItem.id}>
@@ -141,6 +144,7 @@ export default function CulturalBrigade() {
           ))}
         </tbody>
       </table>
+      </div>
     </>
   );
 }

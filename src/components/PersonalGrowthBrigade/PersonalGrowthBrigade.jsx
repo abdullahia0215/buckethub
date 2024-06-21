@@ -60,7 +60,8 @@ export default function PersonalGrowthBrigade() {
   };
   return (
     <>
-      <h1>PersonalGrowth</h1>
+    <div style={{ margin: '40px'}}>
+      <h1 style={{ margin: '20px', textAlign: 'center' }}>Personal Growth</h1>
       <button onClick={() => history.push("/brigades")} className="btn">
         Back To Brigades
       </button>
@@ -72,9 +73,10 @@ export default function PersonalGrowthBrigade() {
       <table className="table table-hover">
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Delete</th>
-            <th>Add To Your Bucket list</th>
+          <th>Name</th>
+              <th>Delete</th>
+              <th>Add To Your Bucket list</th>
+              <th>Votes</th>
           </tr>
           {growthBrigade.map((growthItem) => (
             <tr key={growthItem.id}>
@@ -141,6 +143,7 @@ export default function PersonalGrowthBrigade() {
           ))}
         </tbody>
       </table>
+      </div>
     </>
   );
 }

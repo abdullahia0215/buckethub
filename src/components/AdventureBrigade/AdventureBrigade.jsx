@@ -62,82 +62,93 @@ export default function AdventureBrigade() {
 
   return (
     <>
-      <h1>Adventure</h1>
-      <button onClick={() => history.push("/brigades")} className="btn">
-        Back To Brigades
-      </button>
-      <form onSubmit={addItem} className="form-inline">
-        <input value={input} onChange={handleBucketInput} required className="form-control"></input>
-        <button className="btn">Submit Suggestion</button>
-      </form>
-      <table className="table table-hover">
-        <tbody>
-          <tr>
+      <div style={{ margin: "40px" }}>
+        <h1 style={{ margin: "20px", textAlign: "center" }}>Adventure</h1>
+        <button onClick={() => history.push("/brigades")} className="btn">
+          Back To Brigades
+        </button>
+        <form onSubmit={addItem} className="form-inline">
+          <input
+            value={input}
+            onChange={handleBucketInput}
+            required
+            className="form-control"
+          ></input>
+          <button className="btn">Submit Suggestion</button>
+        </form>
+        <table className="table table-hover">
+          <tbody>
+            <tr>
             <th>Name</th>
-            <th>Delete</th>
-            <th>Add To Your Bucket List</th>
-          </tr>
-          {adventureBrigade.map((adventureItem) => (
-            <tr key={adventureItem.id}>
-              <td>{adventureItem.public_bucket_list_item}</td>
-              <td>
-                {user.id === adventureItem.user_id ? (
-                  <button onClick={() => deleteItem(adventureItem.id)} className="btn">
-                    Delete
-                  </button>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    addToMyBucket(adventureItem.public_bucket_list_item)
-                  }
-                  className="btn"
-                >
-                  Add To Bucket List
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => upvoteItem(adventureItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === adventureItem.id &&
-                        votedItem.upvote
-                    )
-                      ? "orange"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬆️
-                </button>
-
-                {adventureItem.total_votes}
-
-                <button
-                  onClick={() => downvoteItem(adventureItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === adventureItem.id &&
-                        votedItem.downvote
-                    )
-                      ? "blue"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬇️
-                </button>
-              </td>
+              <th>Delete</th>
+              <th>Add To Your Bucket list</th>
+              <th>Votes</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {adventureBrigade.map((adventureItem) => (
+              <tr key={adventureItem.id}>
+                <td>{adventureItem.public_bucket_list_item}</td>
+                <td>
+                  {user.id === adventureItem.user_id ? (
+                    <button
+                      onClick={() => deleteItem(adventureItem.id)}
+                      className="btn"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>
+                  <button
+                    onClick={() =>
+                      addToMyBucket(adventureItem.public_bucket_list_item)
+                    }
+                    className="btn"
+                  >
+                    Add To Bucket List
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => upvoteItem(adventureItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === adventureItem.id &&
+                          votedItem.upvote
+                      )
+                        ? "orange"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬆️
+                  </button>
+
+                  {adventureItem.total_votes}
+
+                  <button
+                    onClick={() => downvoteItem(adventureItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === adventureItem.id &&
+                          votedItem.downvote
+                      )
+                        ? "blue"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬇️
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

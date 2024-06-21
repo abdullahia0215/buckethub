@@ -63,84 +63,88 @@ export default function ServiceBrigade() {
 
   return (
     <>
-      <h1>Service</h1>
-      <button onClick={() => history.push("/brigades")} className="btn">
-        Back To Brigades
-      </button>
-      <form onSubmit={addItem} className="form-inline">
-        <input onChange={handleBucketInput} className="form-control"></input>
-        <button className="btn">Submit Suggestion</button>
-      </form>
-      <table className="table table-hover">
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Add To Your Bucket list</th>
-          </tr>
-          {serviceBrigade.map((serviceItem) => (
-            <tr key={serviceItem.id}>
-              <td>{serviceItem.public_bucket_list_item}</td>
-              <td>
-                {user.id === serviceItem.user_id ? (
+      <div style={{ margin: "40px" }}>
+        <h1 style={{ margin: "20px", textAlign: "center" }}>Service</h1>
+        <button onClick={() => history.push("/brigades")} className="btn">
+          Back To Brigades
+        </button>
+        <form onSubmit={addItem} className="form-inline">
+          <input onChange={handleBucketInput} className="form-control"></input>
+          <button className="btn">Submit Suggestion</button>
+        </form>
+        <table className="table table-hover">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Delete</th>
+              <th>Add To Your Bucket list</th>
+              <th>Votes</th>
+            </tr>
+            {serviceBrigade.map((serviceItem) => (
+              <tr key={serviceItem.id}>
+                <td>{serviceItem.public_bucket_list_item}</td>
+                <td>
+                  {user.id === serviceItem.user_id ? (
+                    <button
+                      onClick={() => deleteItem(serviceItem.id)}
+                      className="btn"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>
                   <button
-                    onClick={() => deleteItem(serviceItem.id)}
+                    onClick={() =>
+                      addToMyBucket(serviceItem.public_bucket_list_item)
+                    }
                     className="btn"
                   >
-                    Delete
+                    Add To Bucket List
                   </button>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    addToMyBucket(serviceItem.public_bucket_list_item)
-                  }
-                  className="btn"
-                >
-                  Add To Bucket List
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => upvoteItem(serviceItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === serviceItem.id &&
-                        votedItem.upvote
-                    )
-                      ? "orange"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬆️
-                </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => upvoteItem(serviceItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === serviceItem.id &&
+                          votedItem.upvote
+                      )
+                        ? "orange"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬆️
+                  </button>
 
-                {serviceItem.total_votes}
+                  {serviceItem.total_votes}
 
-                <button
-                  onClick={() => downvoteItem(serviceItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === serviceItem.id &&
-                        votedItem.downvote
-                    )
-                      ? "blue"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬇️
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <button
+                    onClick={() => downvoteItem(serviceItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === serviceItem.id &&
+                          votedItem.downvote
+                      )
+                        ? "blue"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬇️
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

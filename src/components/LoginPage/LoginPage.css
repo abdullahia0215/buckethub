@@ -1,11 +1,11 @@
 body.animated-background {
   --s: 25vmin;
   --p: calc(var(--s) / 2);
-  --c1: #212121; /* Softer black */
-  --c2: #292929; /* Softer dark gray */
-  --c3: #2b2b2b; /* Softer white */
+  --c1: #020303; /* Softer black */
+  --c2: #191c1f; /* Softer dark gray */
+  --c3: #16181b; /* Softer white */
   --bg: var(--c3);
-  --d: 10000ms; /* Slower animation duration */
+  --d: 13000ms; /* Slower animation duration */
   --e: cubic-bezier(0.76, 0, 0.24, 1);
 
   background-color: var(--bg);

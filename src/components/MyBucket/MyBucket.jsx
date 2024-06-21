@@ -49,7 +49,8 @@ export default function MyBucket() {
   };
   return (
     <>
-      <h1>My Bucket</h1>
+     <h1 style={{ margin: '20px', textAlign: 'center' }}>My Bucket</h1>
+
       <form onSubmit={addItem} className="form-inline">
         <input
           value={input}
