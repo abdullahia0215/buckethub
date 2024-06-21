@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 export default function PersonalGrowthBrigade() {
   let [input, setInput] = useState("");
   const user = useSelector((store) => store.user);
@@ -47,11 +48,45 @@ export default function PersonalGrowthBrigade() {
     setInput("");
   };
 
-  const addToMyBucket = (itemToAdd) => {
-    dispatch({
-      type: "ADD_TO_USER_BUCKET",
-      payload: itemToAdd,
-    });
+  const addToMyBucket = (itemToAdd, vote) => {
+    if (vote <= 0) {
+      swal({
+        title: "Add to Bucket List",
+        text: "This item has a low vote. Are you sure you want to add it to your bucket list?",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            value: null,
+            visible: true,
+            closeModal: true,
+          },
+          confirm: {
+            text: "Add to Bucket List",
+            value: true,
+            visible: true,
+            closeModal: true,
+          },
+        },
+      }).then((value) => {
+        if (value) {
+          dispatch({
+            type: "ADD_TO_USER_BUCKET",
+            payload: itemToAdd,
+          });
+          swal("Successfully added to your bucket list!", {
+            icon: "success",
+          });
+        } else {
+          return;
+        }
+      });
+    } else {
+      dispatch({
+        type: "ADD_TO_USER_BUCKET",
+        payload: itemToAdd,
+      });
+    }
   };
 
   const handleBucketInput = (event) => {
@@ -60,89 +95,92 @@ export default function PersonalGrowthBrigade() {
   };
   return (
     <>
-    <div style={{ margin: '40px'}}>
-      <h1 style={{ margin: '20px', textAlign: 'center' }}>Personal Growth</h1>
-      <button onClick={() => history.push("/brigades")} className="btn">
-        Back To Brigades
-      </button>
-      <form onSubmit={addItem} className="form-inline">
-        <input onChange={handleBucketInput} className="form-control"></input>
+      <div style={{ margin: "40px" }}>
+        <h1 style={{ margin: "20px", textAlign: "center" }}>Personal Growth</h1>
+        <button onClick={() => history.push("/brigades")} className="btn">
+          Back To Brigades
+        </button>
+        <form onSubmit={addItem} className="form-inline">
+          <input onChange={handleBucketInput} className="form-control"></input>
 
-        <button className="btn">Submit Suggestion</button>
-      </form>
-      <table className="table table-hover">
-        <tbody>
-          <tr>
-          <th>Name</th>
+          <button className="btn">Submit Suggestion</button>
+        </form>
+        <table className="table table-hover">
+          <tbody>
+            <tr>
+              <th>Name</th>
               <th>Delete</th>
               <th>Add To Your Bucket list</th>
               <th>Votes</th>
-          </tr>
-          {growthBrigade.map((growthItem) => (
-            <tr key={growthItem.id}>
-              <td>{growthItem.public_bucket_list_item}</td>
+            </tr>
+            {growthBrigade.map((growthItem) => (
+              <tr key={growthItem.id}>
+                <td>{growthItem.public_bucket_list_item}</td>
 
-              <td>
-                {user.id === growthItem.user_id ? (
+                <td>
+                  {user.id === growthItem.user_id ? (
+                    <button
+                      onClick={() => deleteItem(growthItem.id)}
+                      className="btn"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>
                   <button
-                    onClick={() => deleteItem(growthItem.id)}
+                    onClick={() =>
+                      addToMyBucket(
+                        growthItem.public_bucket_list_item,
+                        growthItem.total_votes
+                      )
+                    }
                     className="btn"
                   >
-                    Delete
+                    Add To Bucket List
                   </button>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    addToMyBucket(growthItem.public_bucket_list_item)
-                  }
-                  className="btn"
-                >
-                  Add To Bucket List
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => upvoteItem(growthItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === growthItem.id &&
-                        votedItem.upvote
-                    )
-                      ? "orange"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬆️
-                </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => upvoteItem(growthItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === growthItem.id &&
+                          votedItem.upvote
+                      )
+                        ? "orange"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬆️
+                  </button>
 
-                {growthItem.total_votes}
+                  {growthItem.total_votes}
 
-                <button
-                  onClick={() => downvoteItem(growthItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === growthItem.id &&
-                        votedItem.downvote
-                    )
-                      ? "blue"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬇️
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <button
+                    onClick={() => downvoteItem(growthItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === growthItem.id &&
+                          votedItem.downvote
+                      )
+                        ? "blue"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬇️
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

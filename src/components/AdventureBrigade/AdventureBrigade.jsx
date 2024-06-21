@@ -48,12 +48,51 @@ export default function AdventureBrigade() {
     setInput("");
   };
 
-  const addToMyBucket = (itemToAdd) => {
-    dispatch({
-      type: "ADD_TO_USER_BUCKET",
-      payload: itemToAdd,
-    });
+  const addToMyBucket = (itemToAdd, vote) => {
+    if (vote <= 0) {
+      swal({
+        title: "Add to Bucket List",
+        text: "This item has a low vote. Are you sure you want to add it to your bucket list?",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            value: null,
+            visible: true,
+            closeModal: true,
+          },
+          confirm: {
+            text: "Add to Bucket List",
+            value: true,
+            visible: true,
+            closeModal: true,
+          },
+        },
+      }).then((value) => {
+        if (value) {
+          dispatch({
+            type: "ADD_TO_USER_BUCKET",
+            payload: itemToAdd,
+          });
+          swal("Successfully added to your bucket list!", {
+            icon: "success",
+          });
+        } else {
+          return;
+        }
+      });
+    } else {
+
+      dispatch({
+        type: "ADD_TO_USER_BUCKET",
+        payload: itemToAdd,
+      });
+      swal("Successfully added to your bucket list!", {
+        icon: "success",
+      });
+    }
   };
+
 
   const handleBucketInput = (event) => {
     setInput(event.target.value);
@@ -102,7 +141,7 @@ export default function AdventureBrigade() {
                 <td>
                   <button
                     onClick={() =>
-                      addToMyBucket(adventureItem.public_bucket_list_item)
+                      addToMyBucket(adventureItem.public_bucket_list_item, adventureItem.total_votes)
                     }
                     className="btn"
                   >
