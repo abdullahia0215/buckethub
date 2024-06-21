@@ -6,7 +6,7 @@ export default function BrigadesPage() {
 
   return (
     <>
-      <h1 style={{ marginRight: '50px', marginTop:'20px', textAlign: 'center' }}>Brigades</h1>
+      <h1 style={{ textAlign: 'center', margin: '30px' }}>Brigades</h1>
       <div className="buttons-container">
         <table>
           <tbody>
