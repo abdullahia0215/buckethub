@@ -32,13 +32,38 @@ export default function PersonalGrowthBrigade() {
     });
   };
   const deleteItem = (itemID) => {
-    console.log("click");
-    dispatch({
-      type: "DELETE_GROWTH_ITEM",
-      payload: itemID,
+    swal({
+      title: "Are you sure?",
+      text: "This will delete the public item for everyone!",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch({
+          type: "DELETE_GROWTH_ITEM",
+          payload: itemID,
+        });
+        swal("Item deleted successfully!", {
+          icon: "success",
+        });
+      }
     });
   };
-
   const addItem = (event) => {
     event.preventDefault();
     dispatch({

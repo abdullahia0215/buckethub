@@ -33,15 +33,42 @@ export default function CulturalBrigade() {
   };
 
   const deleteItem = (itemID) => {
-    console.log("click");
-    dispatch({
-      type: "DELETE_CULTURE_ITEM",
-      payload: itemID,
+    swal({
+      title: "Are you sure?",
+      text: "This will delete the public item for everyone!",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch({
+          type: "DELETE_CULTURE_ITEM",
+          payload: itemID,
+        });
+        swal("Item deleted successfully!", {
+          icon: "success",
+        });
+      }
     });
   };
 
   const addItem = (event) => {
     event.preventDefault();
+
     dispatch({
       type: "ADD_CULTURE_ITEM",
       payload: input,
@@ -90,94 +117,101 @@ export default function CulturalBrigade() {
     }
   };
 
-
   const handleBucketInput = (event) => {
     setInput(event.target.value);
     console.log(input);
   };
   return (
     <>
-    <div style={{margin: '40px'}}>
-      <h1 style={{ margin: '20px', textAlign: 'center' }} >Cultural</h1>
-      <button onClick={() => history.push("/brigades")} className="btn">
-        Back To Brigades
-      </button>
-      <form onSubmit={addItem} className="form-inline">
-        <input onChange={handleBucketInput} className="form-control" placeholder="Share your ideas for exploring cultures..."></input>
-        <button className="btn">Submit Suggestion</button>
-      </form>
-      <table className="table table-hover">
-        <tbody>
-          <tr>
-          <th>Name</th>
+      <div style={{ margin: "40px" }}>
+        <h1 style={{ margin: "20px", textAlign: "center" }}>Cultural</h1>
+        <button onClick={() => history.push("/brigades")} className="btn">
+          Back To Brigades
+        </button>
+        <form onSubmit={addItem} className="form-inline">
+          <input
+          value={input}
+            onChange={handleBucketInput}
+            className="form-control"
+            placeholder="Share your ideas for exploring cultures..."
+          ></input>
+          <button className="btn">Submit Suggestion</button>
+        </form>
+        <table className="table table-hover">
+          <tbody>
+            <tr>
+              <th>Name</th>
               <th>Delete</th>
               <th>Add To Your Bucket list</th>
               <th>Votes</th>
-          </tr>
-          {cultureBrigade.map((cultureItem) => (
-            <tr key={cultureItem.id}>
-              <td>{cultureItem.public_bucket_list_item}</td>
-              <td>
-                {user.id === cultureItem.user_id ? (
+            </tr>
+            {cultureBrigade.map((cultureItem) => (
+              <tr key={cultureItem.id}>
+                <td>{cultureItem.public_bucket_list_item}</td>
+                <td>
+                  {user.id === cultureItem.user_id ? (
+                    <button
+                      onClick={() => deleteItem(cultureItem.id)}
+                      className="btn"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>
                   <button
-                    onClick={() => deleteItem(cultureItem.id)}
+                    onClick={() =>
+                      addToMyBucket(
+                        cultureItem.public_bucket_list_item,
+                        cultureItem.total_votes
+                      )
+                    }
                     className="btn"
                   >
-                    Delete
+                    Add To Bucket List
                   </button>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                <button
-                  onClick={() =>
-                    addToMyBucket(cultureItem.public_bucket_list_item, cultureItem.total_votes)
-                  }
-                  className="btn"
-                >
-                  Add To Bucket List
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => upvoteItem(cultureItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === cultureItem.id &&
-                        votedItem.upvote
-                    )
-                      ? "orange"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬆️
-                </button>
+                </td>
+                <td>
+                  <button
+                    onClick={() => upvoteItem(cultureItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === cultureItem.id &&
+                          votedItem.upvote
+                      )
+                        ? "orange"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬆️
+                  </button>
 
-                {cultureItem.total_votes}
+                  {cultureItem.total_votes}
 
-                <button
-                  onClick={() => downvoteItem(cultureItem.id)}
-                  style={{
-                    backgroundColor: userVotes.some(
-                      (votedItem) =>
-                        votedItem.bucket_list_item_id === cultureItem.id &&
-                        votedItem.downvote
-                    )
-                      ? "blue"
-                      : "inherit",
-                  }}
-                  className="btn"
-                >
-                  ⬇️
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <button
+                    onClick={() => downvoteItem(cultureItem.id)}
+                    style={{
+                      backgroundColor: userVotes.some(
+                        (votedItem) =>
+                          votedItem.bucket_list_item_id === cultureItem.id &&
+                          votedItem.downvote
+                      )
+                        ? "blue"
+                        : "inherit",
+                    }}
+                    className="btn"
+                  >
+                    ⬇️
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

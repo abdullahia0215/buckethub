@@ -38,10 +38,36 @@ export default function ServiceBrigade() {
   };
 
   const deleteItem = (itemID) => {
-    console.log("click");
-    dispatch({
-      type: "DELETE_SERVICE_ITEM",
-      payload: itemID,
+    swal({
+      title: "Are you sure?",
+      text: "This will delete the public item for everyone!",
+      icon: "warning",
+      buttons: {
+        cancel: {
+          text: "Cancel",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Delete",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
+    }).then((value) => {
+      if (value) {
+        dispatch({
+          type: "DELETE_SERVICE_ITEM",
+          payload: itemID,
+        });
+        swal("Item deleted successfully!", {
+          icon: "success",
+        });
+      }
     });
   };
 
@@ -53,7 +79,6 @@ export default function ServiceBrigade() {
     });
     setInput("");
   };
-
 
   const addToMyBucket = (itemToAdd, vote) => {
     if (vote <= 0) {
@@ -89,7 +114,6 @@ export default function ServiceBrigade() {
         }
       });
     } else {
-
       dispatch({
         type: "ADD_TO_USER_BUCKET",
         payload: itemToAdd,
@@ -100,7 +124,6 @@ export default function ServiceBrigade() {
     }
   };
 
-
   return (
     <>
       <div style={{ margin: "40px" }}>
@@ -109,7 +132,12 @@ export default function ServiceBrigade() {
           Back To Brigades
         </button>
         <form onSubmit={addItem} className="form-inline">
-          <input onChange={handleBucketInput} className="form-control" placeholder="Share your ideas for giving back..."></input>
+          <input
+            value={input}
+            onChange={handleBucketInput}
+            className="form-control"
+            placeholder="Share your ideas for giving back..."
+          ></input>
           <button className="btn">Submit Suggestion</button>
         </form>
         <table className="table table-hover">
@@ -138,7 +166,10 @@ export default function ServiceBrigade() {
                 <td>
                   <button
                     onClick={() =>
-                      addToMyBucket(serviceItem.public_bucket_list_item, serviceItem.total_votes)
+                      addToMyBucket(
+                        serviceItem.public_bucket_list_item,
+                        serviceItem.total_votes
+                      )
                     }
                     className="btn"
                   >
