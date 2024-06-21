@@ -123,7 +123,7 @@ export default function CulturalBrigade() {
   };
   return (
     <>
-      <div style={{ margin: "40px" }}>
+      <div style={{ margin: "80px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>Cultural</h1>
         <button onClick={() => history.push("/brigades")} className="btn">
           Back To Brigades
@@ -184,10 +184,12 @@ export default function CulturalBrigade() {
                       )
                         ? "orange"
                         : "inherit",
+                        padding: '10px',
+                        marginRight: '10px'
                     }}
                     className="btn"
                   >
-                    ⬆️
+                    ⬆
                   </button>
 
                   {cultureItem.total_votes}
@@ -202,10 +204,12 @@ export default function CulturalBrigade() {
                       )
                         ? "blue"
                         : "inherit",
+                        padding: '10px',
+                        marginLeft: '10px'
                     }}
                     className="btn"
                   >
-                    ⬇️
+                    ⬇
                   </button>
                 </td>
               </tr>

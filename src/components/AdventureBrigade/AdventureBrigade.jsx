@@ -186,10 +186,12 @@ export default function AdventureBrigade() {
                       )
                         ? "orange"
                         : "inherit",
+                        padding: '10px',
+                        marginRight: '10px'
                     }}
                     className="btn"
                   >
-                    ⬆️
+                    ⬆
                   </button>
 
                   {adventureItem.total_votes}
@@ -204,10 +206,12 @@ export default function AdventureBrigade() {
                       )
                         ? "blue"
                         : "inherit",
+                        padding: '10px',
+                        marginLeft: '10px'
                     }}
                     className="btn"
                   >
-                    ⬇️
+                    ⬇
                   </button>
                 </td>
               </tr>

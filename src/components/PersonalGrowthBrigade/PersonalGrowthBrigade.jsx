@@ -178,10 +178,12 @@ export default function PersonalGrowthBrigade() {
                       )
                         ? "orange"
                         : "inherit",
+                        padding: '10px',
+                        marginRight: '10px'
                     }}
                     className="btn"
                   >
-                    ⬆️
+                    ⬆
                   </button>
 
                   {growthItem.total_votes}
@@ -196,10 +198,12 @@ export default function PersonalGrowthBrigade() {
                       )
                         ? "blue"
                         : "inherit",
+                        padding: '10px',
+                        marginLeft: '10px'
                     }}
                     className="btn"
                   >
-                    ⬇️
+                    ⬇
                   </button>
                 </td>
               </tr>

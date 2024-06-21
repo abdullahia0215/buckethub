@@ -6,7 +6,7 @@ export default function BrigadesPage() {
 
   return (
     <>
-      <h1 style={{ margin: '20px', textAlign: 'center' }}>Brigades</h1>
+      <h1 style={{ marginRight: '50px', marginTop:'20px', textAlign: 'center' }}>Brigades</h1>
       <div className="buttons-container">
         <table>
           <tbody>
@@ -15,7 +15,7 @@ export default function BrigadesPage() {
                 <button
                   onClick={() => history.push("/adventure")}
                   id="adventure-button"
-                  className="btn"
+                  className="btn brigadeBtn"
                 >
                   Adventure/Travel
                 </button>
@@ -24,9 +24,9 @@ export default function BrigadesPage() {
                 <button
                   onClick={() => history.push("/culture")}
                   id="culture-button"
-                  className="btn"
+                  className="btn brigadeBtn"
                 >
-                  Cultural/Artistic Experiences
+                  Cultural/Artistic
                 </button>
               </td>
             </tr>
@@ -35,7 +35,7 @@ export default function BrigadesPage() {
                 <button
                   onClick={() => history.push("/service")}
                   id="service-button"
-                  className="btn"
+                  className="btn brigadeBtn"
                 >
                   Service/Contribution
                 </button>
@@ -44,7 +44,7 @@ export default function BrigadesPage() {
                 <button
                   onClick={() => history.push("/growth")}
                   id="growth-button"
-                  className="btn"
+                  className="btn brigadeBtn"
                 >
                   Personal Growth/Learning
                 </button>
