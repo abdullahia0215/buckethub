@@ -114,6 +114,9 @@ export default function CulturalBrigade() {
         type: "ADD_TO_USER_BUCKET",
         payload: itemToAdd,
       });
+      swal("Successfully added to your bucket list!", {
+        icon: "success",
+      });
     }
   };
 
@@ -130,7 +133,7 @@ export default function CulturalBrigade() {
         </button>
         <form onSubmit={addItem} className="form-inline">
           <input
-          value={input}
+            value={input}
             onChange={handleBucketInput}
             className="form-control"
             placeholder="Share your ideas for exploring cultures..."
@@ -184,8 +187,8 @@ export default function CulturalBrigade() {
                       )
                         ? "orange"
                         : "inherit",
-                        padding: '10px',
-                        marginRight: '10px'
+                      padding: "10px",
+                      marginRight: "10px",
                     }}
                     className="btn"
                   >
@@ -204,8 +207,8 @@ export default function CulturalBrigade() {
                       )
                         ? "blue"
                         : "inherit",
-                        padding: '10px',
-                        marginLeft: '10px'
+                      padding: "10px",
+                      marginLeft: "10px",
                     }}
                     className="btn"
                   >

@@ -111,6 +111,9 @@ export default function PersonalGrowthBrigade() {
         type: "ADD_TO_USER_BUCKET",
         payload: itemToAdd,
       });
+      swal("Successfully added to your bucket list!", {
+        icon: "success",
+      });
     }
   };
 
@@ -126,7 +129,11 @@ export default function PersonalGrowthBrigade() {
           Back To Brigades
         </button>
         <form onSubmit={addItem} className="form-inline">
-          <input onChange={handleBucketInput} className="form-control" placeholder="Share your ideas for personal growth..."></input>
+          <input
+            onChange={handleBucketInput}
+            className="form-control"
+            placeholder="Share your ideas for personal growth..."
+          ></input>
 
           <button className="btn">Submit Suggestion</button>
         </form>
@@ -178,8 +185,8 @@ export default function PersonalGrowthBrigade() {
                       )
                         ? "orange"
                         : "inherit",
-                        padding: '10px',
-                        marginRight: '10px'
+                      padding: "10px",
+                      marginRight: "10px",
                     }}
                     className="btn"
                   >
@@ -198,8 +205,8 @@ export default function PersonalGrowthBrigade() {
                       )
                         ? "blue"
                         : "inherit",
-                        padding: '10px',
-                        marginLeft: '10px'
+                      padding: "10px",
+                      marginLeft: "10px",
                     }}
                     className="btn"
                   >
