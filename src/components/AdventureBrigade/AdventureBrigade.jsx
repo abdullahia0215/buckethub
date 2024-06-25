@@ -66,12 +66,28 @@ export default function AdventureBrigade() {
     });
   };
 
+
   const addItem = () => {
-    dispatch({
-      type: "ADD_ADVENTURE_ITEM",
-      payload: input,
+    swal({
+      title: "Are you sure?",
+      text: "You are about to add an item to a public board. Everyone will be able to see it.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willAdd) => {
+      if (willAdd) {
+        dispatch({
+          type: "ADD_ADVENTURE_ITEM",
+          payload: input,
+        });
+        setInput("");
+        swal("Item added successfully!", {
+          icon: "success",
+        });
+      } else {
+        return;
+      }
     });
-    setInput("");
   };
 
   const addToMyBucket = (itemToAdd, vote) => {

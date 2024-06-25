@@ -66,14 +66,27 @@ export default function CulturalBrigade() {
     });
   };
 
-  const addItem = (event) => {
-    event.preventDefault();
-
-    dispatch({
-      type: "ADD_CULTURE_ITEM",
-      payload: input,
+  const addItem = () => {
+    swal({
+      title: "Are you sure?",
+      text: "You are about to add an item to a public board. Everyone will be able to see it.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willAdd) => {
+      if (willAdd) {
+        dispatch({
+          type: "ADD_CULTURE_ITEM",
+          payload: input,
+        });
+        setInput("");
+        swal("Item added successfully!", {
+          icon: "success",
+        });
+      } else {
+        return;
+      }
     });
-    setInput("");
   };
 
   const addToMyBucket = (itemToAdd, vote) => {
