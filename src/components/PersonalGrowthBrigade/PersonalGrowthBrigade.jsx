@@ -133,6 +133,7 @@ export default function PersonalGrowthBrigade() {
             onChange={handleBucketInput}
             className="form-control"
             placeholder="Share your ideas for personal growth..."
+            required
           ></input>
 
           <button className="btn">Submit Suggestion</button>

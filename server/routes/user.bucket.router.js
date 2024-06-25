@@ -18,6 +18,9 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.post("/", rejectUnauthenticated, async (req, res) => {
+  if (req.body.user_item === ""){
+    return
+  }
   pool
     .query(
       `INSERT INTO "user_bucket_items" (bucket_list_item, user_id) VALUES ($1, $2);`,

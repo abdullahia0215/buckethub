@@ -137,6 +137,7 @@ export default function CulturalBrigade() {
             onChange={handleBucketInput}
             className="form-control"
             placeholder="Share your ideas for exploring cultures..."
+            required
           ></input>
           <button className="btn">Submit Suggestion</button>
         </form>

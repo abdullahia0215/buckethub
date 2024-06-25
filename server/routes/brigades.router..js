@@ -114,6 +114,9 @@ router.get("/uservote", (req, res) => {
 
 // --------------------------- POST REQUESTS FOR THE BRIGADE PAGES ----------------------------
 router.post("/adventure", rejectUnauthenticated, (req, res) => {
+  if (req.body.public_item === "") {
+    return;
+  }
   pool
     .query(
       `INSERT INTO "category_bucket_list_items" (category_id, user_id, public_bucket_list_item) VALUES ($1, $2, $3)`,
@@ -128,6 +131,9 @@ router.post("/adventure", rejectUnauthenticated, (req, res) => {
     });
 });
 router.post("/growth", rejectUnauthenticated, (req, res) => {
+  if (req.body.public_item === "") {
+    return;
+  }
   pool
     .query(
       `INSERT INTO "category_bucket_list_items" (category_id, user_id, public_bucket_list_item) VALUES ($1, $2, $3)`,
@@ -142,6 +148,9 @@ router.post("/growth", rejectUnauthenticated, (req, res) => {
     });
 });
 router.post("/culture", rejectUnauthenticated, (req, res) => {
+  if (req.body.public_item === "") {
+    return;
+  }
   pool
     .query(
       `INSERT INTO "category_bucket_list_items" (category_id, user_id, public_bucket_list_item) VALUES ($1, $2, $3)`,
@@ -156,6 +165,9 @@ router.post("/culture", rejectUnauthenticated, (req, res) => {
     });
 });
 router.post("/service", rejectUnauthenticated, (req, res) => {
+  if (req.body.public_item === "") {
+    return;
+  }
   pool
     .query(
       `INSERT INTO "category_bucket_list_items" (category_id, user_id, public_bucket_list_item) VALUES ($1, $2, $3)`,

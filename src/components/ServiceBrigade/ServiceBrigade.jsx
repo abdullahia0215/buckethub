@@ -137,6 +137,7 @@ export default function ServiceBrigade() {
             onChange={handleBucketInput}
             className="form-control"
             placeholder="Share your ideas for giving back..."
+            required
           ></input>
           <button className="btn">Submit Suggestion</button>
         </form>
