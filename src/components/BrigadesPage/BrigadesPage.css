@@ -1,23 +1,30 @@
-/* Common button styles for each specific button ID */
-#adventure-button, #culture-button, #service-button, #growth-button {
-  padding: 70px 200px; /* Increased padding for larger buttons */
+#adventure-button,
+#culture-button,
+#service-button,
+#growth-button {
+  padding: 70px 200px;
   color: white;
   background: none;
   border: none;
   cursor: pointer;
   text-align: center;
-  font-size: 32px; /* Increased font size for larger text */
+  font-size: 32px;
   text-decoration: none;
   overflow: hidden;
-  border-radius: 30px; /* Adjust border radius for proportion */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  border-radius: 30px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
   position: relative;
-  flex: 1; /* Makes all buttons take equal space */
+  flex: 1;
   max-width: 100%;
-  margin: 10px; /* Space around each button */
+  margin: 10px;
+  transition: box-shadow 0.3s ease;
 }
 
-#adventure-button::before, #culture-button::before, #service-button::before, #growth-button::before {
+#adventure-button::before,
+#culture-button::before,
+#service-button::before,
+#growth-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -28,11 +35,21 @@
   filter: grayscale(0%);
   transition: filter 0.3s ease;
   z-index: -1;
-  border-radius: 30px; /* Adjust border radius for proportion */
+  border-radius: 30px;
 }
 
-#adventure-button:hover::before, #culture-button:hover::before, #service-button:hover::before, #growth-button:hover::before {
-  filter: grayscale(100%);
+#adventure-button:hover,
+#culture-button:hover,
+#service-button:hover,
+#growth-button:hover {
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+}
+
+#adventure-button:hover::before,
+#culture-button:hover::before,
+#service-button:hover::before,
+#growth-button:hover::before {
+  filter: grayscale(40%);
 }
 
 #adventure-button::before {
@@ -51,7 +68,10 @@
   background: url("../images/growth.jpg") center/cover no-repeat;
 }
 
-#adventure-button span, #culture-button span, #service-button span, #growth-button span {
+#adventure-button span,
+#culture-button span,
+#service-button span,
+#growth-button span {
   position: relative;
   z-index: 1;
 }
@@ -69,9 +89,11 @@
   min-width: 200px; /* Ensure buttons don’t get too small */
   margin: 10px;
 }
+
 #service-button {
-  font-size:27px
+  font-size: 27px;
 }
+
 #growth-button {
-  font-size:30px
+  font-size: 30px;
 }
