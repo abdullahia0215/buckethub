@@ -8,7 +8,7 @@ export default function BrigadesPage() {
     <>
       <h1 style={{ textAlign: "center", marginTop: "30px" }}>Brigades</h1>
       <div className="buttons-container">
-        <table>
+        <table className="brigadeTable">
           <tbody>
             <tr>
               <td>
@@ -46,7 +46,7 @@ export default function BrigadesPage() {
                   id="growth-button"
                   className="btn brigadeBtn"
                 >
-                  Personal Growth
+                  Growth/Learning
                 </button>
               </td>
             </tr>

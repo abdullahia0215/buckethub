@@ -21,10 +21,11 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h1>{heading}</h1>
+
 
       <div className="grid">
         <div className="grid-col grid-col_8">
+        <h1 style={{marginTop: '250px', fontSize: '60px'}}>{heading}</h1>
           <h4 style={{fontStyle: 'italic'}}>
             "Before you kick the bucket..."
           </h4>
@@ -49,11 +50,11 @@ function LandingPage() {
             amet nisi.
           </p> */}
         </div>
-        <div className="grid-col grid-col_4">
+        <div className="grid-col grid-col_4" style={{ marginTop: '150px'}}>
           <RegisterForm />
 
           <center>
-            <h4>Already a Member?</h4>
+            <h4>Already Registered?</h4>
             <button className="btn btn_sizeSm" onClick={onLogin}>
               Login
             </button>

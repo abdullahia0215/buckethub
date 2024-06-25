@@ -78,3 +78,12 @@ Grid
   flex-basis: 100%;
   max-width: 100%;
 }
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This will center the content vertically */
+  text-align: center; /* Center the text horizontally */
+}
+/* .headerAndSlogan {
+} */
