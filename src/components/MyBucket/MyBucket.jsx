@@ -4,17 +4,51 @@ import Confetti from "react-confetti";
 import swal from "sweetalert";
 import { useWindowSize } from "@uidotdev/usehooks";
 import "../MyBucket/MyBucket.css";
+import { useHistory } from "react-router-dom";
 
 export default function MyBucket() {
+  const history = useHistory();
   const userBucket = useSelector((store) => store.myBucketReducer);
+  const user = useSelector((store) => store.user);
   const { width, height } = useWindowSize();
   const [input, setInput] = useState("");
-  const [showConfetti, setShowConfetti] = useState(false); 
+  const [showConfetti, setShowConfetti] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (user.first_time === true) {
+      swal({
+        title: "Welcome To BucketHub!",
+        text: "Welcome to BucketHub, your one-stop site for bucket list curation and creation. Looking for a guide? Head over to our about page for directions on how to use it!",
+        icon: "info",
+        buttons: {
+          cancel: {
+            text: "No Thanks, I've got this.",
+            value: true,
+            visible: true,
+            className: "",
+            closeModal: true,
+          },
+          confirm: {
+            text: "Take me to the directions!",
+            value: false,
+            closeModal: true,
+          },
+        },
+      }).then((value) => {
+        dispatch({ type: "SET_USER_FALSE" });
+
+        if (value === false) {
+          dispatch({ type: "SET_USER_FALSE" });
+          history.push("/about");
+        } else {
+          window.location.reload();
+        }
+      });
+    }
+
     dispatch({ type: "FETCH_MY_BUCKET" });
-  }, [dispatch]);
+  }, []);
 
   const completeItem = (itemID) => {
     swal({
@@ -45,9 +79,9 @@ export default function MyBucket() {
           "You ticked another off the list :D",
           "success"
         );
-        setShowConfetti(true); 
+        setShowConfetti(true);
         setTimeout(() => {
-          setShowConfetti(false); 
+          setShowConfetti(false);
         }, 5000);
       }
     });
@@ -95,7 +129,9 @@ export default function MyBucket() {
   };
   return (
     <>
-      {showConfetti && <Confetti width={width} height={height} tweenDuration={5000}/>}
+      {showConfetti && (
+        <Confetti width={width} height={height} tweenDuration={5000} />
+      )}
       <div style={{ margin: "40px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>My Bucket</h1>
 

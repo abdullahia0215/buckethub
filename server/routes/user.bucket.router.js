@@ -7,7 +7,10 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   pool
-    .query(`SELECT * FROM "user_bucket_items" WHERE user_id=$1 ORDER BY completion_status`, [req.user.id])
+    .query(
+      `SELECT * FROM "user_bucket_items" WHERE user_id=$1 ORDER BY completion_status`,
+      [req.user.id]
+    )
     .then((result) => {
       res.send(result.rows);
     })
@@ -18,8 +21,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 router.post("/", rejectUnauthenticated, async (req, res) => {
-  if (req.body.user_item === ""){
-    return
+  if (req.body.user_item === "") {
+    return;
   }
   pool
     .query(
@@ -63,4 +66,20 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       console.log("error in updating completion", error);
     });
 });
+
+router.put("/", rejectUnauthenticated, (req, res) => {
+  pool
+    .query(
+      `UPDATE "users" SET first_time=false WHERE id=$1;`,
+      [req.user.id]
+    )
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log("error in updating user status", error);
+    });
+});
+
 module.exports = router;

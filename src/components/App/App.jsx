@@ -26,6 +26,7 @@ import CulturalBrigade from "../CulturalBrigade/CulturalBrigade";
 import ServiceBrigade from "../ServiceBrigade/ServiceBrigade";
 import PersonalGrowthBrigade from "../PersonalGrowthBrigade/PersonalGrowthBrigade";
 import BrigadesPage from "../BrigadesPage/BrigadesPage";
+// import FirstTimeBucket from "../FirstTimeBucket/FirstTimeBucket";
 
 function App() {
   const dispatch = useDispatch();
@@ -72,7 +73,6 @@ function App() {
           >
             <MyBucket />
           </ProtectedRoute>
-
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

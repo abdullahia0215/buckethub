@@ -37,11 +37,19 @@ function* addUserBucketItem(action) {
     console.log("error in adduserbucketitem saga", error);
   }
 }
+function* setUserStatus() {
+  try {
+    yield axios.put(`/api/userbucket/`)
+  } catch (error) {
+    console.log('error in setting user status', error)
+  }
+}
 
 function* fetchMyBucketSaga() {
   yield takeEvery("FETCH_MY_BUCKET", fetchMyBucket);
   yield takeEvery("COMPLETE_USER_BUCKET_ITEM", completeBucketItem);
   yield takeEvery("DELETE_USER_BUCKET_ITEM", deleteBucketIten);
   yield takeEvery("ADD_USER_BUCKET_ITEM", addUserBucketItem);
+  yield takeEvery("SET_USER_FALSE", setUserStatus )
 }
 export default fetchMyBucketSaga;
