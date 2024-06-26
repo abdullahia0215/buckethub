@@ -23,27 +23,17 @@ export default function MyBucket() {
         icon: "info",
         buttons: {
           cancel: {
-            text: "No Thanks, I've got this.",
+            text: "Got it!",
             value: true,
             visible: true,
             className: "",
             closeModal: true,
           },
-          confirm: {
-            text: "Take me to the directions!",
-            value: false,
-            closeModal: true,
-          },
         },
+        buttonsStyling: false,
       }).then((value) => {
+        window.location.reload();
         dispatch({ type: "SET_USER_FALSE" });
-
-        if (value === false) {
-          dispatch({ type: "SET_USER_FALSE" });
-          history.push("/about");
-        } else {
-          window.location.reload();
-        }
       });
     }
 
