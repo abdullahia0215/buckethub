@@ -24,8 +24,8 @@ function AboutPage() {
           list is personal to you and cannot be viewed by any other user. If you
           need suggestions on what to add to your bucket list, head over to the
           Brigades link to navigate to the 4 public suggestion boards, where you
-          (along with other users) can add suggestions and add those suggestions
-          straight to your bucket list.
+          (along with other users) can add, vote on, and incorporate suggestions
+          straight to your bucket list with the click of a button.
         </p>
         <h1>Why Does BucketHub Exist?</h1>
         <p>

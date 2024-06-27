@@ -135,43 +135,47 @@ export default function MyBucket() {
           ></input>
           <button className="btn">Add To Bucket List</button>
         </form>
-        <table className="table table-hover">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Complete</th>
-              <th>Delete</th>
-            </tr>
-            {userBucket.map((userItem) => (
-              <tr key={userItem.id}>
-                <td>{userItem.bucket_list_item}</td>
-                <td>
-                  {userItem.completion_status ? (
-                    <button disabled className="btn">
-                      Complete{" "}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => completeItem(userItem.id)}
-                      className="btn complete-btn"
-                    >
-                      Complete
-                    </button>
-                  )}
-                </td>
-
-                <td>
-                  <button
-                    onClick={() => deleteItem(userItem.id)}
-                    className="btn delete-btn"
-                  >
-                    Delete
-                  </button>
-                </td>
+        {userBucket.length === 0 ? (
+          <h2>Get started by adding an item! </h2>
+        ) : (
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Complete</th>
+                <th>Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              {userBucket.map((userItem) => (
+                <tr key={userItem.id}>
+                  <td>{userItem.bucket_list_item}</td>
+                  <td>
+                    {userItem.completion_status ? (
+                      <button disabled className="btn">
+                        Complete{" "}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => completeItem(userItem.id)}
+                        className="btn complete-btn"
+                      >
+                        Complete
+                      </button>
+                    )}
+                  </td>
+
+                  <td>
+                    <button
+                      onClick={() => deleteItem(userItem.id)}
+                      className="btn delete-btn"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
