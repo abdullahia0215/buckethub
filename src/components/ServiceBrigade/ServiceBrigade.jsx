@@ -98,7 +98,7 @@ export default function ServiceBrigade() {
     if (vote <= 0) {
       swal({
         title: "Add to Bucket List",
-        text: "This item has a low vote. Are you sure you want to add it to your bucket list?",
+        text: "This item has a low vote/no votes. Are you sure you want to add it to your bucket list?",
         icon: "warning",
         buttons: {
           cancel: {
