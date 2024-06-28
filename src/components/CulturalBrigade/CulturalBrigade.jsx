@@ -141,6 +141,7 @@ export default function CulturalBrigade() {
     <>
       <div style={{ margin: "80px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>Cultural</h1>
+        <h4 style={{ textAlign: "center", marginTop: "30px" }}>| {cultureBrigade.length} current cultural suggestions |</h4>
         <button onClick={() => history.push("/brigades")} className="btn">
           Back To Brigades
         </button>

@@ -145,6 +145,7 @@ export default function AdventureBrigade() {
     <>
       <div style={{ margin: "40px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>Adventure</h1>
+        <h4 style={{ textAlign: "center", marginTop: "30px" }}>| {adventureBrigade.length} current adventure suggestions |</h4>
         <button onClick={() => history.push("/brigades")} className="btn">
           Back To Brigades
         </button>

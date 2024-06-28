@@ -139,6 +139,7 @@ export default function PersonalGrowthBrigade() {
     <>
       <div style={{ margin: "40px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>Personal Growth</h1>
+        <h4 style={{ textAlign: "center", marginTop: "30px" }}>| {growthBrigade.length} current personal growth suggestions |</h4>
         <button onClick={() => history.push("/brigades")} className="btn">
           Back To Brigades
         </button>

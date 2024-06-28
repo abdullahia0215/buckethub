@@ -142,6 +142,7 @@ export default function ServiceBrigade() {
     <>
       <div style={{ margin: "40px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>Service</h1>
+        <h4 style={{ textAlign: "center", marginTop: "30px" }}>| {serviceBrigade.length} current service-oriented suggestions |</h4>
         <button onClick={() => history.push("/brigades")} className="btn">
           Back To Brigades
         </button>

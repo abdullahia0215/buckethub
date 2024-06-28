@@ -124,6 +124,8 @@ export default function MyBucket() {
       )}
       <div style={{ margin: "40px" }}>
         <h1 style={{ margin: "20px", textAlign: "center" }}>My Bucket</h1>
+        <h4 style={{ margin: "20px", textAlign: "center" }}>You've completed {userBucket.filter(item => item.completion_status===true).length} items!</h4>
+        <h6 style={{ margin: "20px", textAlign: "center" }}>{userBucket.filter(item => item.completion_status === false).length} left, nice! </h6>
 
         <form onSubmit={addItem} className="form-inline">
           <input
